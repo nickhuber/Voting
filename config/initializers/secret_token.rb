@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Pollster::Application.config.secret_token = 'd4187f0b056cddaef1f1a1c51df7a57d808b4a885b4b248725b228bade996edc66afbe5f1ddec91ddc6855d497a5e377377cf48a86faadf3d7f7d1269571459c'
+Voting::Application.config.secret_token = 'e7ea184f7f7c9ff9971483def2895aa68a496d45d4a652e5648388c694edbc7dedd6d277ac97163521991f499103921b8e78cf7dce0a6ba4261a91ccf6726666'

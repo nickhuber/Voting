@@ -1,0 +1,23 @@
+<h1>Listing questions for <%= @poll.title %></h1>
+
+<table>
+  <tr>
+    <th>Body</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @questions.each do |q| %>
+  <tr>
+    <td><%= q.body %></td>
+    <td><%= link_to 'Show', poll_question_path(:id => q.id) %></td>
+    <td><%= link_to 'Edit', edit_poll_question_path(:id => q.id) %></td>
+    <td><%= link_to 'Delete', poll_question_path(:id => q.id), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Question', new_poll_question_path %>

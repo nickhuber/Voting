@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @poll.title %>
+</p>
+
+<p>
+	<b>Questions:</b>
+	<%= link_to 'View all of this post\'s questions', poll_questions_path(@poll) %>
+	<ul>
+	<% @poll.questions.each do |q| %>
+		<li><%= link_to q.body, poll_question_path(@poll, q) %></li>
+	<% end %>
+	</ul>
+</p>
+
+
+<%= link_to 'Edit poll', edit_poll_path(@poll) %> |
+<%= link_to 'Back', polls_path %>

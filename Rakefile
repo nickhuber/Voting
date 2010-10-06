@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Pollster::Application.load_tasks
+Voting::Application.load_tasks

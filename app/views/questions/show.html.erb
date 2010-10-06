@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Body:</b>
+  <%= @question.body %>
+</p>
+
+<p>
+  <b>Associated Poll:</b>
+  	<%= @poll.title %>
+</p>
+
+
+<%= link_to 'Edit', edit_poll_question_path(@poll, @question) %> |
+<%= link_to 'Back', poll_questions_path %>
