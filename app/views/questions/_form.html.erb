@@ -1,4 +1,4 @@
-<%= form_for(:poll, @question) do |f| %>
+<%= form_for([@poll, @question]) do |f| %>
 <% if @question.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -14,14 +14,7 @@
     <%= f.label :body %><br />
     <%= f.text_field :body %>
   </div>
-<%
-=begin
-  <div class="field">  
-    <%= f.label :polls %><br />
-    <%= f.text_field :polls %>
-  </div>
-=end
-%>
+
   <div class="actions">
     <%= f.submit %> 
   </div>

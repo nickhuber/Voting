@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
   # GET polls/1/questions/new
   def new
     @poll = Poll.find(params[:poll_id])
-    @question = Question.new
+    @question = @poll.questions.build
   end
 
   # GET polls/1/questions/1/edit
@@ -27,9 +27,13 @@ class QuestionsController < ApplicationController
   # POST polls/1/questions
   def create
     @question = Question.new(params[:question])
+    @poll = Poll.find(params[:poll_id])
+    
+    # this looks kinda hacky, try to work around it
+    @question.poll_id = @poll.id
     
     if @question.save
-      redirect_to(@question, :notice => 'Question was successfully created.')
+      redirect_to([@poll, @question], :notice => 'Question was successfully created.')
     else
       render :action => "new"
     end
@@ -38,9 +42,10 @@ class QuestionsController < ApplicationController
   # PUT polls/1/questions/1
   def update
     @question = Question.find(params[:id])
+    @poll = Poll.find(params[:poll_id])
 
     if @question.update_attributes(params[:question])
-      redirect_to(@question, :notice => 'Question was successfully updated.')
+      redirect_to([@poll, @question], :notice => 'Question was successfully updated.')
     else
       render :action => "edit" 
     end

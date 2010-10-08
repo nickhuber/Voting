@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', spoll_question_path(:id => @poll.id) %> |
+<%= link_to 'Show', poll_question_path(:poll_id => @poll.id) %> |
 <%= link_to 'Back', poll_questions_path %>
