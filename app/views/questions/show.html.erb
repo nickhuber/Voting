@@ -10,6 +10,20 @@
   	<%= @poll.title %>
 </p>
 
-
+<p>
+  <b>Multiple Choice Answers:</b>
+  <% if @question.answers.exists? %>
+    <ol>
+      <% @question.answers.each do |a| %>
+        <li><%= link_to a.body, question_answer_path(@question, a) %></li>
+      <% end %>
+    </ol>
+  <% else %>
+    <small>No answers for this question yet.</small>
+  <% end %>
+  <p>
+    <%= link_to 'Add a new question', new_question_answer_path(@question) %>
+  </p>
+</p>
 <%= link_to 'Edit', edit_poll_question_path(@poll, @question) %> |
 <%= link_to 'Back', poll_questions_path %>
