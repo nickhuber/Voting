@@ -8,12 +8,10 @@
 development:
   adapter: mysql2
   encoding: utf8
-  reconnect: false
   database: voting_development
   pool: 5
   username: root
-  password:
-  host: localhost
+  password: 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -21,19 +19,15 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  reconnect: false
   database: voting_test
   pool: 5
   username: root
-  password:
-  host: localhost
+  password: 
 
 production:
   adapter: mysql2
   encoding: utf8
-  reconnect: false
   database: voting_production
   pool: 5
   username: root
   password:
-  host: localhost
