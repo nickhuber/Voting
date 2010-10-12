@@ -1,5 +1,7 @@
 Voting::Application.routes.draw do
   
+  resources :reports
+
   #resources :answers
 
   #resources :polls do
