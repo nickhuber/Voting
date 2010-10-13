@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(:version => 20101013151907) do
 
+
   create_table "answers", :force => true do |t|
     t.string   "body"
     t.integer  "question_id"
@@ -29,6 +30,14 @@ ActiveRecord::Schema.define(:version => 20101013151907) do
   create_table "questions", :force => true do |t|
     t.string   "body"
     t.integer  "poll_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reports", :force => true do |t|
+    t.integer  "agr_num_questions"
+    t.integer  "agr_num_participants"
+    t.float    "agr_avg_score"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
