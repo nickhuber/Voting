@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<center><h1>Report for: Name</h1></center>
+
+<p>
+  <b>Id:</b>
+  <%= @report.id %>
+</p>
+
+<p>
+  <b>Agr num questons:</b>
+  <%= @report.agr_num_questions %>
+</p>
+
+<p>
+  <b>Agr num participants:</b>
+  <%= @report.agr_num_participants %>
+</p>
+
+<p>
+  <b>Agr avg score:</b>
+  <%= @report.agr_avg_score %>
+</p>
+
+
+
+
+<%= link_to 'Edit', edit_report_path(@report) %> |
+<%= link_to 'Back', reports_path %>
