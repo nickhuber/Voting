@@ -1,22 +1,14 @@
 Voting::Application.routes.draw do
   
-  resources :reports
-
-  #resources :answers
-
-  #resources :polls do
-  #  resources :questions
-  #end
-  
   #EDIT ME TO CHANGE ROOT URL
   root :to => 'polls#index'
   
-  resources :polls, do
-    resources :questions
-  end
+  resources :reports
   
-  resources :questions do
-    resources :answers
+  resources :polls, :shallow => true do
+    resources :questions, :shallow => true do
+      resources :answers
+    end
   end
   
 end

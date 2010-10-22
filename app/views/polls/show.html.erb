@@ -10,10 +10,10 @@
 	<%= link_to 'View all of this poll\'s questions', poll_questions_path(@poll) %>
 	<ul>
 	<% @poll.questions.each do |q| %>
-		<li><%= link_to q.body, poll_question_path(@poll, q) %></li>
+		<li><%= link_to q.body, question_path(q) %></li>
 	<% end %>
 	</ul>
-	<%= link_to 'Add a new question', new_poll_question_path(@poll) %>
+	<%= link_to 'Add a new question', new_question_path() %>
 </p>
 
 
