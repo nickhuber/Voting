@@ -15,15 +15,15 @@
   <% if @question.answers.exists? %>
     <ol>
       <% @question.answers.each do |a| %>
-        <li><%= link_to a.body, question_answer_path(@question, a) %></li>
+        <li><%= link_to a.body, answer_path(a) %></li>
       <% end %>
     </ol>
   <% else %>
     <small>No answers for this question yet.</small>
   <% end %>
   <p>
-    <%= link_to 'Add a new answer', new_question_answer_path(@question) %>
+    <%= link_to 'Add a new answer', new_answer_path() %>
   </p>
 </p>
-<%= link_to 'Edit', edit_poll_question_path(@poll, @question) %> |
-<%= link_to 'Back', poll_questions_path %>
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

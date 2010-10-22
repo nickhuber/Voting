@@ -3,6 +3,9 @@
 <p>
   <b>Body:</b>
   <%= @answer.body %>
+  <% if @answer.correct %>
+    <span class="correct"> (correct answer) </span>
+  <% end %>
 </p>
 
 <p>
@@ -11,5 +14,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_question_answer_path(@answer) %> |
+<%= link_to 'Edit', edit_question_answer_path(@question, @answer) %> |
 <%= link_to 'Back', question_answers_path %>

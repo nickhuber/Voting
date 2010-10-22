@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  id: MyString
+  agr_num_questions: 1
+  agr_num_participants: 1
+  agr_avg_score: 1.5
+  timestamp_started: 
+  timestamp_finished: 
+
+two:
+  id: MyString
+  agr_num_questions: 1
+  agr_num_participants: 1
+  agr_avg_score: 1.5
+  timestamp_started: 
+  timestamp_finished: 
