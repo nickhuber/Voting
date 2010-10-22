@@ -11,9 +11,9 @@
 <% @questions.each do |q| %>
   <tr>
     <td><%= q.body %></td>
-    <td><%= link_to 'Show', poll_question_path(:id => q.id) %></td>
-    <td><%= link_to 'Edit', edit_poll_question_path(:id => q.id) %></td>
-    <td><%= link_to 'Delete', poll_question_path(:id => q.id), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', question_path(q) %></td>
+    <td><%= link_to 'Edit', edit_question_path(q) %></td>
+    <td><%= link_to 'Delete', question_path(q), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
