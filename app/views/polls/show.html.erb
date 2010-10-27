@@ -1,21 +1,25 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Title:</b>
-  <%= @poll.title %>
+  <h2><%= @poll.title %></h2>
 </p>
 
 <p>
 	<b>Questions:</b>
-	<%= link_to 'View all of this poll\'s questions', poll_questions_path(@poll) %>
+	<%= link_to "View all of this poll's questions", poll_questions_path(@poll) %>
 	<ul>
-	<% @poll.questions.each do |q| %>
-		<li><%= link_to q.body, question_path(q) %></li>
+	<% if @poll.questions.empty? %>
+	  <small>No questions.</small>
+	<% else %>
+	  <% @poll.questions.each do |q| %>
+		  <li><%= link_to q.body, question_path(q) %> - <%= q.weight %></li>
+		<% end %>
 	<% end %>
 	</ul>
-	<%= link_to 'Add a new question', new_question_path() %>
+	<p><%= link_to 'Add a new question', new_poll_question_path(@poll) %> | <%= link_to 'Edit poll', edit_poll_path(@poll) %></p>
+	
+	<p><%= link_to 'Present Poll', poll_present_path %></p>
 </p>
 
 
-<%= link_to 'Edit poll', edit_poll_path(@poll) %> |
-<%= link_to 'Back', polls_path %>
+

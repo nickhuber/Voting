@@ -7,8 +7,21 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+<h1>Vote BCIT!</h1>  
 
+<div class="navbar">
+  <span class="navitem">Home</span> 
+  <span class="navitem"><%= link_to 'Polls', polls_path %></span>
+  <span class="navitem"><%= link_to 'Reports', reports_path %></span>
+  <span class="navitem">Administration</span>
+  <span class="navitem">Logout</span>
+</div>
+
+<hr/>
 <%= yield %>
+<hr/>
+
+<small>End of page, footer goes here?</small>
 
 </body>
 </html>
