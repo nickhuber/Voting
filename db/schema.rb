@@ -10,8 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101013151907) do
-
+ActiveRecord::Schema.define(:version => 20101022233135) do
 
   create_table "answers", :force => true do |t|
     t.string   "body"
@@ -40,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20101013151907) do
     t.float    "agr_avg_score"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "poll_id"
   end
 
 end

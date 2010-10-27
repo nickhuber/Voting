@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>Poll</th>
     <th>Id</th>
     <th>Number of questions</th>
     <th>Number of Participants</th>
@@ -12,6 +13,7 @@
 
 <% @reports.each do |report| %>
   <tr>
+    <td><%= report.poll_id %></td>
     <td><%= report.id %></td>
     <td><%= report.agr_num_questions %></td>
     <td><%= report.agr_num_participants %></td>
