@@ -6,8 +6,16 @@
 </p>
 
 <p>
-  <b>Associated Poll:</b>
-  	<%= @poll.title %>
+  <b>Associated Polls:</b>
+  <% if @question.polls.empty? %>
+    No associated polls.
+  <% else %>
+  <ul>
+    <% @question.polls.each do |p|%>
+    	<li><%= p.title %></li>
+  	<% end%>
+	</ul>
+	<% end %>
 </p>
 
 <p>
@@ -22,8 +30,7 @@
     <small>No answers for this question yet.</small>
   <% end %>
   <p>
-    <%= link_to 'Add a new answer', new_answer_path() %>
+    <%= link_to 'Add a new answer', new_poll_path() %>
   </p>
 </p>
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
+<%= link_to 'Edit', edit_question_path() %>
