@@ -43,7 +43,7 @@ class QuestionsController < ApplicationController
     @poll = Poll.find(params[:poll_id])
 
     if @question.update_attributes(params[:question])
-      redirect_to([@poll, @question], :notice => 'Question was successfully updated.')
+      redirect_to(@question, :notice => 'Question was successfully updated.')
     else
       render :action => "edit" 
     end

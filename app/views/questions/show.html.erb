@@ -8,13 +8,13 @@
 <p>
   <b>Associated Polls:</b>
   <% if @question.polls.empty? %>
-    No associated polls.
+    <small>No associated polls.</small>
   <% else %>
-  <ul>
-    <% @question.polls.each do |p|%>
-    	<li><%= p.title %></li>
-  	<% end%>
-	</ul>
+    <ul>
+      <% @question.polls.each do |p|%>
+      	<li><%= p.title %></li>
+    	<% end%>
+	  </ul>
 	<% end %>
 </p>
 
@@ -23,14 +23,19 @@
   <% if @question.answers.exists? %>
     <ol>
       <% @question.answers.each do |a| %>
-        <li><%= link_to a.body, answer_path(a) %></li>
+        <li>
+          <%= link_to a.body, answer_path(a) %>
+          <% if a.correct %> 
+            <span class="correct"> (correct answer) 
+          <% end %>
+        </li>
       <% end %>
     </ol>
   <% else %>
     <small>No answers for this question yet.</small>
   <% end %>
   <p>
-    <%= link_to 'Add a new answer', new_poll_path() %>
+    <%= link_to 'Add a new answer', new_question_answer_path(@question) %>
   </p>
 </p>
 <%= link_to 'Edit', edit_question_path() %>

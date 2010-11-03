@@ -7,7 +7,14 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+<h1>Vote BCIT!</h1>  
+<hr/>
+Home | 
+<%= link_to 'Polls', polls_path %> | 
+<%= link_to 'Reports', reports_path %> |
+Logout
 
+<hr/>
 <%= yield %>
 
 </body>
