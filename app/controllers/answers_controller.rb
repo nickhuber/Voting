@@ -17,7 +17,6 @@ class AnswersController < ApplicationController
 
   # GET /question/1/answers/1/edit
   def edit
-    @question = Question.find(params[:question_id])
     @answer = Answer.find(params[:id])
   end
 
@@ -38,7 +37,6 @@ class AnswersController < ApplicationController
 
   # PUT /question/1/answers/1
   def update
-    @question = Question.find(params[:question_id])
     @answer = Answer.find(params[:id])
 
     if @answer.update_attributes(params[:answer])

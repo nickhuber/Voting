@@ -35,7 +35,6 @@
     <small>No answers for this question yet.</small>
   <% end %>
   <p>
-    <%= link_to 'Add a new answer', new_question_answer_path(@question) %>
+    <%= link_to 'Add a new answer', new_question_answer_path(@question) %> | <%= link_to 'Edit', edit_question_path() %>
   </p>
 </p>
-<%= link_to 'Edit', edit_question_path() %>
