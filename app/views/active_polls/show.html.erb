@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h1><%= @active_poll.poll.title %></h1>
+  
+</p>
+
+<p>
+	<h2><%= @active_poll.question.body %></h2>
+  
+</p>
+<p>
+  <h2>Choices</h2>
+  <ol>
+    <% @active_poll.question.answers.each do |a| %>
+      <li><%= a.body %></li>
+    <% end %>
+  </ol>
+</p>
+
+
+

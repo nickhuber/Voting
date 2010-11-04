@@ -27,8 +27,7 @@ class QuestionsController < ApplicationController
   # POST polls/1/questions
   def create
     @poll = Poll.find(params[:poll_id])
-    @poll.questions.create
-    @question = @poll.questions.build(params[:question])
+    @question = @poll.questions.create(params[:question])
     
     if @question.save
       redirect_to(@question, :notice => 'Question was successfully created.')
