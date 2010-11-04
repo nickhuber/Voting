@@ -53,12 +53,12 @@ class PollsController < ApplicationController
   def present
     @poll = Poll.find(params[:id])
     @active_poll = ActivePoll.new do |a|
-      a.poll_id = @poll
-      a.question_id = @poll.questions.first
-      #a.question = @poll.questions.first
+      a.poll_id = @poll.id
+      a.question_id = @poll.questions.first.id
     end
     
     if @active_poll.save
+      #redirect to the screen to manage the poll from.
       redirect_to(@poll, :notice => 'Poll is now active for polling.')
     else
       render :action => "show"

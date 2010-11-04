@@ -1,4 +1,5 @@
 class ActivePoll < ActiveRecord::Base
-  has_one :poll
-  belongs_to :report
+  belongs_to :poll
+  belongs_to :question
+  has_one    :report
 end

@@ -14,4 +14,7 @@ Voting::Application.routes.draw do
   #for presenting a poll
   match 'polls/:id/present', :to => 'polls#present', :as => :poll_present
   
+  #for viewing/manager an active poll
+  match 'active_polls/:id', :to => 'active_polls#show'
+  
 end
