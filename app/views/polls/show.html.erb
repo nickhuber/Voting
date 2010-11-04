@@ -7,7 +7,7 @@
 
 <p>
 	<b>Questions:</b>
-	<%= link_to 'View all of this poll\'s questions', poll_questions_path(@poll) %>
+	<%= link_to "View all of this poll's questions", poll_questions_path(@poll) %>
 	<ul>
 	<% if @poll.questions.empty? %>
 	  <small>No questions.</small>
@@ -17,7 +17,9 @@
 		<% end %>
 	<% end %>
 	</ul>
-	<%= link_to 'Add a new question', new_poll_question_path(@poll) %> | <%= link_to 'Edit poll', edit_poll_path(@poll) %>
+	<p><%= link_to 'Add a new question', new_poll_question_path(@poll) %> | <%= link_to 'Edit poll', edit_poll_path(@poll) %></p>
+	
+	<p><%= link_to 'Present Poll', poll_present_path %></p>
 </p>
 
 

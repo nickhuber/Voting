@@ -48,4 +48,20 @@ class PollsController < ApplicationController
 
     redirect_to(polls_url)
   end
+  
+  # GET polls/1/present
+  def present
+    @poll = Poll.find(params[:id])
+    @active_poll = ActivePoll.new do |a|
+      a.poll_id = @poll
+      a.question_id = @poll.questions.first
+      #a.question = @poll.questions.first
+    end
+    
+    if @active_poll.save
+      redirect_to(@poll, :notice => 'Poll is now active for polling.')
+    else
+      render :action => "show"
+    end
+  end
 end

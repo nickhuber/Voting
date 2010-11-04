@@ -11,4 +11,7 @@ Voting::Application.routes.draw do
     end
   end
   
+  #for presenting a poll
+  match 'polls/:id/present', :to => 'polls#present', :as => :poll_present
+  
 end
