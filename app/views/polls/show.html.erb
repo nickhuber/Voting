@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Title:</b>
-  <%= @poll.title %>
+  <h2><%= @poll.title %></h2>
 </p>
 
 <p>
@@ -13,7 +12,7 @@
 	  <small>No questions.</small>
 	<% else %>
 	  <% @poll.questions.each do |q| %>
-		  <li><%= link_to q.body, question_path(q) %></li>
+		  <li><%= link_to q.body, question_path(q) %> - <%= q.weight %></li>
 		<% end %>
 	<% end %>
 	</ul>
