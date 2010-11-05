@@ -2,6 +2,11 @@ class PollsController < ApplicationController
   # GET /polls
   def index
     @polls = Poll.all
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.mobile  { render :html => @polls }
+    end
   end
 
   # GET /polls/1
