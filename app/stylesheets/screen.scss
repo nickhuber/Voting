@@ -12,6 +12,8 @@
 @import "partials/form";
 @import "partials/two_col";
 
-body {
-  background: $blue;
+@import "partials/color";
+
+html {
+  background-color: $blue;
 }
