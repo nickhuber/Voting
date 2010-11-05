@@ -58,8 +58,8 @@ class PollsController < ApplicationController
     end
     
     if @active_poll.save
-      #redirect to the screen to manage the poll from.
-      redirect_to(@poll, :notice => 'Poll is now active for polling.')
+      #redirect to the screen to manage the poll from, right now goes to the wrong ActivePoll(pollID)
+      redirect_to(view_active_poll_path(@active_poll), :notice => 'Poll is now active for polling.')
     else
       render :action => "show"
     end
