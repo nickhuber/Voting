@@ -17,6 +17,19 @@ class QuestionsController < ApplicationController
   def new
     @poll = Poll.find(params[:poll_id])
     @question = @poll.questions.build
+    
+    if params[:num_answers]
+      @num_answers = params[:num_answers].to_i
+    else
+      @num_answers = 4
+    end
+    
+    @num_answers.times { @question.answers.build }
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET polls/1/questions/1/edit

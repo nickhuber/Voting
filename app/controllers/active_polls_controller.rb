@@ -1,4 +1,6 @@
-class ActivePollsController < ApplicationController  
+class ActivePollsController < ApplicationController
+  respond_to :html, :json
+  
   # GET /active_polls/1
   def show
     @active_poll = ActivePoll.find(params[:id])
@@ -31,16 +33,43 @@ class ActivePollsController < ApplicationController
       
   # GET /1
   def clicker
+    # Active poll being accessed.
     @active_poll = ActivePoll.find(params[:id])
+    
+    # Check if user is particpating in this poll. 
+    if user_session.active_poll != @active_poll
+                    
+      # Either user hasn't bound to a poll or their session has expired.
+      if user_session.active_poll.nil? || !ActivePoll.exists?(user_session.active_poll)
+        # Bind session to active poll.
+        user_session.active_poll = @active_poll
+        
+      else
+        # Deal with the cheeky user trying to jump ship... (Redirect?)
+      end
+    end
+    data = [ 
+      @active_poll, 
+      @active_poll.question,
+      @active_poll.question.answers
+    ];
+    respond_with data.to_json
   end
   
   # GET /1/submit/
   def submit
+    redirect_to :action => :clicker and return if user_session.participant.nil? #check if the user has a session or not
+    
     @active_poll = ActivePoll.find(params[:id])
-    AnsweredQuestion.new do |a|
-      a.question = @active_poll.question
-      a.answer = Answer.find(params[:answer]) #TODO: make sure this answer fits this question., ALSO, make sure we dont have duplicate submissions from each user
-      a.save
+    if AnsweredQuestion.exists?({:question_id => @active_poll.question.id, :participant_id => user_session.participant})
+      AnsweredQuestion.find_by_question_id_and_participant_id(@active_poll.question.id, user_session.participant).update_attributes(:answer_id => params[:answer])
+    else
+      AnsweredQuestion.new do |a|
+        a.question = @active_poll.question
+        a.answer = Answer.find(params[:answer])
+        a.participant_id = user_session.participant
+        a.save
+      end
     end
     redirect_to :action => :clicker
   end

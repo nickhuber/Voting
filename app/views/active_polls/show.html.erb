@@ -2,9 +2,18 @@
   Active Poll: <%= @active_poll.poll.title %>
 <% end %>
 
+<% content_for :head do %>
+  <%= javascript_include_tag 'pollster' %>
+<% end %>
+
 <% content_for :notice do %>
   <%= notice %>
 <% end %>
+
+<div class="data">
+  <div id="active_poll_id"><%= @active_poll.id %></div>
+  <div id="active_question_id"><%= @active_poll.question.id %></div>
+</div>
 
 <p>
 	<h2><%= @active_poll.question.body %></h2>

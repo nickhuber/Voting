@@ -11,6 +11,7 @@
   <%= javascript_include_tag :defaults %>
   <!-- <%= javascript_include_tag "/jqtouch/jqtouch.min.js", "mobile" %> -->
   <%= javascript_include_tag "/jqtouch/jqtouch.js", "mobile" %>
+  <%= yield :head %>
   <%= csrf_meta_tag %>
 </head>
 <body>
