@@ -1,0 +1,20 @@
+v0.4 - 18 May 2008
+* Updated for Rails3
+
+v0.3 - 10 September 2008
+* Better date handling with acts_like_date <Jerry Cheung>
+* Catch empty collections for series <Jerry Cheung>
+
+v0.2.2 - 07 May 2008
+* Correctly handle graph-wide options <Mathias Sulser>
+
+v0.2.1 - 05 May 2008
+* Encode values as strings for json/pure compatibility
+
+v0.2 - 02 May 2008
+
+* Upgraded to Flot v0.4
+* Now using built-in Flot date-handling
+* Using json/ext for JS generation
+* NOTE: unknown bug using json/pure
+* Generally easier-to-read code

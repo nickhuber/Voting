@@ -1,0 +1,3 @@
+require 'flotilla'
+
+ActionView::Helpers
