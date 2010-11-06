@@ -18,4 +18,6 @@ Voting::Application.routes.draw do
   match 'active_polls/:id', :to => 'active_polls#show', :as => :view_active_poll
   match 'active_polls/:id/next', :to => 'active_polls#next', :as => :next_active_poll
   
+  match ':id', :to => 'active_polls#clicker'
+  
 end
