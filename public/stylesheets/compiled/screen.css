@@ -329,7 +329,7 @@ body.bp .bottom {
 }
 /* line 8, ../../../../../../../.rvm/gems/ruby-1.9.2-p0/gems/compass-0.10.5/frameworks/blueprint/stylesheets/blueprint/_debug.scss */
 body.bp .showgrid {
-  background: url('/images/grid.png?1288908945');
+  background: url('/images/grid.png?1288915684');
 }
 /* line 4, ../../../../../../../.rvm/gems/ruby-1.9.2-p0/gems/compass-0.10.5/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
 body.bp .error {
@@ -503,48 +503,49 @@ form.bp textarea {
   height: 250px;
 }
 
-/* line 25, ../../../app/stylesheets/partials/_two_col.scss */
-body.two-col #container {
+/* line 24, ../../../app/stylesheets/partials/_one_col.scss */
+body.one-col #container {
   width: 950px;
   margin: 0 auto;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 27, ../../../app/stylesheets/partials/_two_col.scss */
-body.two-col #header, body.two-col #footer {
+/* line 28, ../../../app/stylesheets/partials/_one_col.scss */
+body.one-col #header, body.one-col #footer {
   display: inline;
   float: left;
   margin-right: 10px;
   width: 950px;
 }
 /* line 139, ../../../../../../../.rvm/gems/ruby-1.9.2-p0/gems/compass-0.10.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html body.two-col #header, * html body.two-col #footer {
+* html body.one-col #header, * html body.one-col #footer {
   overflow-x: hidden;
 }
-/* line 29, ../../../app/stylesheets/partials/_two_col.scss */
-body.two-col #sidebar {
+/* line 32, ../../../app/stylesheets/partials/_one_col.scss */
+body.one-col #content {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 310px;
+  width: 950px;
 }
 /* line 139, ../../../../../../../.rvm/gems/ruby-1.9.2-p0/gems/compass-0.10.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html body.two-col #sidebar {
+* html body.one-col #content {
   overflow-x: hidden;
 }
-/* line 33, ../../../app/stylesheets/partials/_two_col.scss */
-body.two-col #content {
+/* line 36, ../../../app/stylesheets/partials/_one_col.scss */
+body.one-col #content-ped {
   display: inline;
   float: left;
-  margin-right: 0;
-  width: 630px;
+  margin-right: 10px;
+  width: 950px;
+  bottom: 0px;
+  display: block;
+  float: none;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
 }
 /* line 139, ../../../../../../../.rvm/gems/ruby-1.9.2-p0/gems/compass-0.10.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html body.two-col #content {
+* html body.one-col #content-ped {
   overflow-x: hidden;
-}
-
-/* line 17, ../../../app/stylesheets/screen.scss */
-html {
-  background-color: #3bbfce;
 }
