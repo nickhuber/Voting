@@ -10,4 +10,9 @@ class ActivePollsController < ApplicationController
     #make the question be the next question
     render :action => :show
   end
+  
+  # GET /1
+  def clicker
+    @active_poll = ActivePoll.find(params[:id])
+  end
 end

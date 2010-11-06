@@ -1,4 +1,7 @@
 class ReportsController < ApplicationController
+  # Catch :mobile format requests and serve :html templates instead.
+  before_filter :override_format
+  
   # GET /reports
   # GET /reports.xml
   def index

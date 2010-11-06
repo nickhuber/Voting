@@ -1,12 +1,10 @@
 class PollsController < ApplicationController
+  # Catch :mobile format requests and serve :html templates instead.
+  before_filter :override_format
+  
   # GET /polls
   def index
     @polls = Poll.all
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.mobile  { render :html => @polls }
-    end
   end
 
   # GET /polls/1
