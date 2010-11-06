@@ -10,9 +10,14 @@
   <h2><%= @active_poll.question.body %></h2>
 </div>
 <div id="answers">
-  <ul>
+  <ol>
     <% @active_poll.question.answers.each do |a| %>
-      <li class="arrow"><a><%= a.body %></a></li>
+      <li class="arrow"><%= link_to a.body, submit_active_poll_path({:answer => a}) %></li>
     <% end %>
+<<<<<<< HEAD
   </ul>
 </div>
+=======
+  </ol>
+</div>
+>>>>>>> 9f4a288bcf2bdd53c21a62286dd0039829b486a2

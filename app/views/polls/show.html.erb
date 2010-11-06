@@ -13,32 +13,34 @@
 <b>Questions:</b>
 <%= link_to "View all of this poll's questions", poll_questions_path(@poll) %>
 
-<%= form_tag({:controller => :polls, :action => "sort"}, :method => "post") do %>
-<table id="poll-questions">
-  <tbody>
-  <% if @poll.pollquestions.empty? %>
-    <tr>
-      <td></td>
-      <td>No questions.</td>
-      <td></td>
-    </tr>
-  <% else %>
-    <tr class="nodrop nodrag">
-      <th></th>
-      <th>Question</th>
-      <th>Weight</th>
-    </tr>
-    <% @poll.pollquestions.each do |pq| %>
-      <tr>
-        <td class="dnd-tab"></td>
-        <td><%= link_to pq.question.body, question_path(pq.question) %></td>
-        <td><%= select_tag("weight[#{pq.id.to_s}][]", options_for_select((0..@poll.pollquestions.length - 1).to_a, pq.weight)) %></td>
+<% if @poll.pollquestions.empty? %>
+  <div class="poll-questions-empty">
+    No questions.
+  </div>
+<% else %>
+  <%= form_tag({:controller => :polls, :action => "sort"}, :method => "post", :id => "questions-sort", :remote => true) do %>
+  <table id="poll-questions">
+    <tbody>
+      <tr class="nodrop nodrag">
+        <th class="tabledrag-handle"></th>
+        <th class="question">Question</th>
+        <th class="question-button-show"></th>
+        <th class="question-weight">Weight</th>
       </tr>
-    <% end %>
+      <% @poll.pollquestions.sort_by {|q| q.weight}.each do |pq| %>
+        <tr>
+          <td class="dnd-tab"></td>
+          <td class="question"><%= pq.question.body %></td>
+          <td class="question-button-show"><%= link_to "Show", question_path(pq.question) %></td>
+          <td class="question-weight">
+            <%= select_tag("weight[#{pq.id.to_s}]", options_for_select((0..@poll.pollquestions.length - 1).to_a, pq.weight)) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= submit_tag "Save Order" %>
   <% end %>
-  </tbody>
-</table>
-<%= submit_tag "Save Order" %>
 <% end %>
 
 <p><%= link_to 'Add a new question', new_poll_question_path(@poll) %> | <%= link_to 'Edit poll', edit_poll_path(@poll) %></p>
