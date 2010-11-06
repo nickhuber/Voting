@@ -13,8 +13,10 @@ $(function () {
 
     // a null signifies separate line segments
     var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
-    
-    $.plot($("#placeholder"), [ d1, d2, d3 ]);
+    var d4 = [[0][20]];
+ 
+   $.plot($("#placeholder"),[{data:d4,bars: {show: true,barWidth: 1,fill: true},
+       label: "Bar"}]);
 });
 </script>
 
@@ -29,8 +31,8 @@ $(function () {
 <% @report.participants.each do |p| %>
   User: <%= p.id %>
   <% p.answered_questions.each do |a| %>
-    Question: <%= a.question %>
-    Answer: <%= a.answer %>
+    Question: <%= a.question.body %>
+    Answer: <%= a.answer.body %>
   <% end %>
 <% end %>
 
