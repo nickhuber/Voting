@@ -1,3 +1,23 @@
+<% content_for :head do %>
+<%= javascript_include_tag "/javascripts/jquery.flot.pack.js" %>
+<%= javascript_include_tag "/javascripts/excanvas.pack.js" %>
+<% end %>
+ <div id="placeholder" style="width:600px;height:300px;"></div>
+<script id="source" language="javascript" type="text/javascript">
+$(function () {
+    var d1 = [];
+    for (var i = 0; i < 14; i += 0.5)
+        d1.push([i, Math.sin(i)]);
+
+    var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
+
+    // a null signifies separate line segments
+    var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
+    
+    $.plot($("#placeholder"), [ d1, d2, d3 ]);
+});
+</script>
+
 <% content_for :title do %>
   Report for:<%=@poll.title%>
 <% end %>
@@ -7,8 +27,8 @@
 <% end %>
 
 <p>
-  <b>Poll Name:</b>
-  <%= @report.poll.title %>
+  <b>Date:</b>
+  <%= @report.poll.created_at %>(Format Later)
 </p>
 
 <p>
@@ -29,5 +49,5 @@
 
 
 
-<%= link_to 'Edit', edit_report_path(@report) %> |
+
 <%= link_to 'Back', reports_path %>
