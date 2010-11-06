@@ -1,47 +1,27 @@
 <% content_for :head do %>
 <%= javascript_include_tag "/javascripts/jquery.flot.pack.js" %>
 <%= javascript_include_tag "/javascripts/excanvas.pack.js" %>
+<%= javascript_include_tag "report_monitor.js" %>
 <% end %>
- <div id="placeholder" style="width:600px;height:300px;"></div>
-<script id="source" language="javascript" type="text/javascript">
-$(function () {
-    var num_of_participants = <%= @report.participants.count %>;
-    var num_of_questions    = <%= @report.poll.questions.count %>;
-    var counter = .5;
-    var bar_counter = 0
-    
-	$.plot($("#placeholder"), [
-        <% @report.poll.questions.each do |q| %>  
-        {
-            data: [[bar_counter++,<%= AnsweredQuestion.num_correct(q) %>]],
-            bars: { show: true}
-        },
-        <% end %>
-	],
-	{
-		xaxis: {
-		        max : num_of_questions,
-                ticks: [ 
-                        <% @report.poll.questions.each do |q| %>  
-                            [counter++, "<%= q.body.to_s %>"],
-                        <% end %>
-                       ],		       
-		},
-        yaxis: {
-            min : 0
-            //max : num_of_participants  
-        },
-		legend: {
-		    show: false
-		}
-
-	});
-});
-	</script>
-
-
-
-
+<div id="placeholder" style="width:600px;height:300px;">
+    Total Participants:<span class="num_of_participants"><%= @report.participants.count %></span></td>
+    <table>
+        <thead> 
+            <tr>
+                <th>Question Number</th>
+                <th>Number of Correct Answers</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @report.poll.questions.each do |q| %>  
+                <tr>    
+                    <td><%= q.body %></td>
+                    <td class="correct_answer"><%= AnsweredQuestion.num_correct(q).to_s %></td>
+                </tr>   
+            <% end %>
+        </tbody>
+    </table>
+</div>
 
 <% content_for :title do %>
   Report for:<%=@report.poll.title%>
@@ -85,7 +65,7 @@ $(function () {
 
 <p>
   <b>Number of Participants:</b>
-     To be implemented
+     <%= @report.participants.count%>
 </p>
 
 <p>
