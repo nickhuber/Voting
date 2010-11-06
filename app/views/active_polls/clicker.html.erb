@@ -14,10 +14,5 @@
     <% @active_poll.question.answers.each do |a| %>
       <li class="arrow"><%= link_to a.body, submit_active_poll_path({:answer => a}) %></li>
     <% end %>
-<<<<<<< HEAD
-  </ul>
-</div>
-=======
   </ol>
 </div>
->>>>>>> 9f4a288bcf2bdd53c21a62286dd0039829b486a2
