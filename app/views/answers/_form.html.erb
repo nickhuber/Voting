@@ -12,13 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :body %><br />
+    <%= f.label :body, "Answer" %>
     <%= f.text_field :body %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :correct %><br />
+
     <%= f.check_box :correct %>
+    <%= f.label :correct %>
   </div>
   
   <div class="actions">

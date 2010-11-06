@@ -10,7 +10,7 @@
   <%= notice %>
 <% end %>
 
-<%= link_to 'Add questions', poll_questions_path(@poll) %>
+
 
 <% if @poll.pollquestions.empty? %>
   <div class="poll-questions-empty">
@@ -42,9 +42,11 @@
   <% end %>
 <% end %>
 
-<p><%= link_to 'Edit poll', edit_poll_path(@poll) %></p>
-
-<p><%= link_to 'Present Poll', poll_present_path %></p>
+<p>
+  <%= link_to 'Add questions', poll_questions_path(@poll) %> |
+  <%= link_to 'Edit poll', edit_poll_path(@poll) %> | 
+  <%= link_to 'Present poll', poll_present_path %>
+</p>
 
 
 

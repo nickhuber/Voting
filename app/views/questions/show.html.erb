@@ -7,14 +7,14 @@
 <% end %>
 
 <p>
-  <b>Body:</b>
+  <h3>Title</h3>
   <%= @question.body %>
 </p>
 
 <p>
-  <b>Associated Polls:</b>
+  <h3>Polls this question belongs to</h3>
   <% if @question.polls.empty? %>
-    <small>No associated polls.</small>
+    <small>none</small>
   <% else %>
     <ul>
       <% @question.polls.each do |p|%>
@@ -25,7 +25,7 @@
 </p>
 
 <p>
-  <b>Multiple Choice Answers:</b>
+  <h3>Multiple Choice Answers</h3>
   <% if @question.answers.exists? %>
     <ol>
       <% @question.answers.each do |a| %>
@@ -38,9 +38,9 @@
       <% end %>
     </ol>
   <% else %>
-    <small>No answers for this question yet.</small>
+    <p><small>No answers for this question yet.</small></p>
   <% end %>
   <p>
-    <%= link_to 'Add a new answer', new_question_answer_path(@question) %> | <%= link_to 'Edit', edit_question_path() %>
+    <%= link_to 'Add a new answer', new_question_answer_path(@question) %> | <%= link_to 'Edit question', edit_question_path() %>
   </p>
 </p>
