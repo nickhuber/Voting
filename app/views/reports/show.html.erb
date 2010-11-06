@@ -6,49 +6,33 @@
 <script id="source" language="javascript" type="text/javascript">
 $(function () {
     var num_of_participants = <%= @report.participants.count %>;
+    var num_of_questions    = <%= @report.poll.questions.count %>;
+    var counter = .5;
+    var bar_counter = 0
     
 	$.plot($("#placeholder"), [
         <% @report.poll.questions.each do |q| %>  
         {
-            data: [[0,<%= AnsweredQuestion.num_correct(q) %>]],
+            data: [[bar_counter++,<%= AnsweredQuestion.num_correct(q) %>]],
             bars: { show: true}
         },
         <% end %>
-
-		{
-		       // label: 'Failed',
-		        data: [[0,10]],
-		        bars: { show: true}
-		},
-		{
-		     //   label: 'Passed',
-		        data: [[1,15]],
-		        bars: { show: true }
-		},
-		{
-		     //   label: 'Not Run',
-		        data: [[2,30]],
-		        bars: { show: true }
-		},
-		{
-		     //   label: 'Blocked',
-		        data: [[3,5]],
-		        bars: { show: true }
-		},
-		{
-		      //  label: 'In Progress',
-		        data: [[4,40]],
-		        bars: { show: true }
-		}
 	],
 	{
 		xaxis: {
-		        max : num_of_participants,
-		        ticks: [[1/2, "Failed"], [1.5, "Passed"], [2.5, "Not Run"], [3.5, "Blocked"], [4.5, "In Progress"]],
-		       
+		        max : num_of_questions,
+                ticks: [ 
+                        <% @report.poll.questions.each do |q| %>  
+                            [counter++, "<%= q.body.to_s %>"],
+                        <% end %>
+                       ],		       
 		},
+        yaxis: {
+            min : 0
+            //max : num_of_participants  
+        },
 		legend: {
-		        show: false
+		    show: false
 		}
 
 	});
