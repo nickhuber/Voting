@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  load_and_authorize_resource
   
   # Catch :mobile format requests and serve :html templates instead.
   before_filter :override_format

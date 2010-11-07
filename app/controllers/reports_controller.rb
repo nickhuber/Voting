@@ -1,12 +1,12 @@
 class ReportsController < ApplicationController
+  load_and_authorize_resource
+
   # Catch :mobile format requests and serve :html templates instead.
   before_filter :override_format
   
   # GET /reports
   # GET /reports.xml
   def index
-    @reports = Report.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @reports }
@@ -16,7 +16,6 @@ class ReportsController < ApplicationController
   # GET /reports/1
   # GET /reports/1.xml
   def show
-    @report = Report.find(params[:id])
     @poll = @report.poll #should work
     respond_to do |format|
       format.html # show.html.erb
@@ -27,8 +26,6 @@ class ReportsController < ApplicationController
   # GET /reports/new
   # GET /reports/new.xml
   def new
-    @report = Report.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @report }
@@ -37,14 +34,11 @@ class ReportsController < ApplicationController
 
   # GET /reports/1/edit
   def edit
-    @report = Report.find(params[:id])
   end
 
   # POST /reports
   # POST /reports.xml
   def create
-    @report = Report.new(params[:report])
-
     respond_to do |format|
       if @report.save
         format.html { redirect_to(@report, :notice => 'Report was successfully created.') }
@@ -59,8 +53,6 @@ class ReportsController < ApplicationController
   # PUT /reports/1
   # PUT /reports/1.xml
   def update
-    @report = Report.find(params[:id])
-
     respond_to do |format|
       if @report.update_attributes(params[:report])
         format.html { redirect_to(@report, :notice => 'Report was successfully updated.') }
@@ -75,7 +67,6 @@ class ReportsController < ApplicationController
   # DELETE /reports/1
   # DELETE /reports/1.xml
   def destroy
-    @report = Report.find(params[:id])
     @report.destroy
 
     respond_to do |format|

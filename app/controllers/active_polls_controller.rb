@@ -1,4 +1,4 @@
-class ActivePollsController < ApplicationController
+class ActivePollsController < ApplicationController  
   # GET /active_polls/1
   def show
     @active_poll = ActivePoll.find(params[:id])
