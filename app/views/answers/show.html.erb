@@ -1,4 +1,10 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %>
+  Answer to question: <%= @answer.question.body %>
+<% end %>
+
+<% content_for :notice do %>
+  <%= notice %>
+<% end %>
 
 <p>
   <b>Body:</b>

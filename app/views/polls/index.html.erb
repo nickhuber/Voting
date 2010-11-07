@@ -2,7 +2,9 @@
   Listing Polls
 <% end %>
 
-<p id="notice"><%= notice %></p>
+<% content_for :notice do %>
+  <%= notice %>
+<% end %>
 
 <div class="button-create">
   <%= link_to 'New Poll', new_poll_path %>

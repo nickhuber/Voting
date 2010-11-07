@@ -1,8 +1,10 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %>
+  <%= @poll.title %>
+<% end %>
 
-<p>
-  <h2><%= @poll.title %></h2>
-</p>
+<% content_for :notice do %>
+  <%= notice %>
+<% end %>
 
 <p>
 	<b>Questions:</b>

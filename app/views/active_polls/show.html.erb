@@ -1,4 +1,10 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %>
+  TODO: WHAT SHOULD THIS TITLE BE? - active_polls(show.html.erb)
+<% end %>
+
+<% content_for :notice do %>
+  <%= notice %>
+<% end %>
 
 <p>
   <h1><%= @active_poll.poll.title %></h1>

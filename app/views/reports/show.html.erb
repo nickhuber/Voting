@@ -1,5 +1,10 @@
-<p id="notice"><%= notice %></p>
-<center><h1>Report for:<%=@poll.title%> </h1></center>
+<% content_for :title do %>
+  Report for:<%=@poll.title%>
+<% end %>
+
+<% content_for :notice do %>
+  <%= notice %>
+<% end %>
 
 <p>
   <b>Poll Name:</b>

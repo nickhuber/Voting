@@ -1,7 +1,10 @@
 <% content_for :title do %>
   Listing Reports
 <% end %>
-<p id="notice"><%= notice %></p>
+
+<% content_for :notice do %>
+  <%= notice %>
+<% end %>
 
 <div class="button-create">
 <%= link_to 'New Report', new_report_path %>

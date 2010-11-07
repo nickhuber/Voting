@@ -2,7 +2,9 @@
   <%= @active_poll.poll.title %>
 <% end %>
 
-<p id="notice"><%= notice %></p>
+<% content_for :notice do %>
+  <%= notice %>
+<% end %>
 
 <div id="question">
   <h2><%= @active_poll.question.body %></h2>
