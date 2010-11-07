@@ -1,0 +1,81 @@
+/* line 8, ../../../app/stylesheets/styles.scss */
+#container {
+  background-color: white;
+}
+
+/* line 11, ../../../app/stylesheets/styles.scss */
+#content-ped {
+  background-color: #dddddd;
+}
+
+/* line 15, ../../../app/stylesheets/styles.scss */
+#site-title {
+  margin-left: 3.333em;
+}
+
+/* line 19, ../../../app/stylesheets/styles.scss */
+#main-nav {
+  border-top: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+}
+/* line 22, ../../../app/stylesheets/styles.scss */
+#main-nav ul {
+  margin-bottom: 0;
+}
+/* line 26, ../../../app/stylesheets/styles.scss */
+#main-nav .links li {
+  display: inline;
+  font-size: 1.4em;
+  line-height: 2em;
+  margin: 0 10px;
+}
+
+/* line 38, ../../../app/stylesheets/styles.scss */
+body.bp table.listing-table {
+  padding-left: 80px;
+  padding-right: 80px;
+}
+/* line 42, ../../../app/stylesheets/styles.scss */
+body.bp table.listing-table th, body.bp table.listing-table td {
+  padding-left: 0;
+  padding-right: 0;
+}
+/* line 47, ../../../app/stylesheets/styles.scss */
+body.bp table.listing-table th.last, body.bp table.listing-table td.last {
+  margin-right: 0;
+}
+/* line 51, ../../../app/stylesheets/styles.scss */
+body.bp table.listing-table .tblcol-name {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 550px;
+}
+/* line 139, ../../../../../../../.rvm/gems/ruby-1.9.2-p0/gems/compass-0.10.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html body.bp table.listing-table .tblcol-name {
+  overflow-x: hidden;
+}
+/* line 55, ../../../app/stylesheets/styles.scss */
+body.bp table.listing-table .tblcol-link {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 70px;
+}
+/* line 139, ../../../../../../../.rvm/gems/ruby-1.9.2-p0/gems/compass-0.10.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html body.bp table.listing-table .tblcol-link {
+  overflow-x: hidden;
+}
+
+/* line 60, ../../../app/stylesheets/styles.scss */
+#footer {
+  background: #dddddd;
+  border-top: solid 2px #BCBCBC;
+  margin-top: 3em;
+  padding: 2em 0;
+}
+/* line 66, ../../../app/stylesheets/styles.scss */
+#footer span {
+  padding-right: 40px;
+  padding-left: 40px;
+}

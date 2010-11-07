@@ -1,28 +1,27 @@
 class PollsController < ApplicationController
+  load_and_authorize_resource
+  
+  # Catch :mobile format requests and serve :html templates instead.
+  before_filter :override_format
+  
   # GET /polls
   def index
-    @polls = Poll.all
   end
 
   # GET /polls/1
   def show
-    @poll = Poll.find(params[:id])
   end
 
   # GET /polls/new
   def new
-    @poll = Poll.new
   end
 
   # GET /polls/1/edit
   def edit
-    @poll = Poll.find(params[:id])
   end
 
   # POST /polls
   def create
-    @poll = Poll.new(params[:poll])
-
     if @poll.save
       redirect_to(@poll, :notice => 'Poll was successfully created.')
     else
@@ -32,8 +31,6 @@ class PollsController < ApplicationController
 
   # PUT /polls/1
   def update
-    @poll = Poll.find(params[:id])
-
     if @poll.update_attributes(params[:poll])
       redirect_to(@poll, :notice => 'Poll was successfully updated.')
     else
@@ -43,7 +40,6 @@ class PollsController < ApplicationController
 
   # DELETE /polls/1
   def destroy
-    @poll = Poll.find(params[:id])
     @poll.destroy
 
     redirect_to(polls_url)
@@ -52,7 +48,6 @@ class PollsController < ApplicationController
   # GET polls/1/present
   # TODO fix failing on not having any questions
   def present
-    @poll = Poll.find(params[:id])
     @active_poll = ActivePoll.new do |a|
       a.poll_id = @poll.id
       a.question_id = @poll.questions.first.id

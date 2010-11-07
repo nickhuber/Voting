@@ -1,23 +1,24 @@
 <p id="notice"><%= notice %></p>
+<center><h1>Report for:<%=@poll.title%> </h1></center>
 
 <p>
-  <b>Id:</b>
-  <%= @report.id %>
+  <b>Poll Name:</b>
+  <%= @report.poll.title %>
 </p>
 
 <p>
-  <b>Agr num questions:</b>
-  <%= @report.agr_num_questions %>
+  <b>Number of Questions:</b>
+  <%= @report.poll.questions.count %>
 </p>
 
 <p>
-  <b>Agr num participants:</b>
-  <%= @report.agr_num_participants %>
+  <b>Number of Participants:</b>
+     To be implemented
 </p>
 
 <p>
-  <b>Agr avg score:</b>
-  <%= @report.agr_avg_score %>
+  <b>Average Score:</b>
+  To be Implemented
 </p>
 
 

@@ -6,6 +6,10 @@ gem 'rails', '3.0.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+gem "jquery-rails"  # javascript
+gem "compass"       # theming/styles
+gem "devise"        # authentication
+gem "cancan"        # authorization
 
 # Use unicorn as the web server
 # gem 'unicorn'

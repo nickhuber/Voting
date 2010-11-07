@@ -1,8 +1,15 @@
-<h1>Listing reports</h1>
+<% content_for :title do %>
+  Listing Reports
+<% end %>
+<p id="notice"><%= notice %></p>
 
-<table>
+<div class="button-create">
+<%= link_to 'New Report', new_report_path %>
+</div>
+
+<table class="listing-table results">
   <tr>
-    <th>Id</th>
+    <th>Poll Name</th>
     <th>Number of questions</th>
     <th>Number of Participants</th>
     <th>Average Score</th>
@@ -10,20 +17,16 @@
     <th></th>
   </tr>
 
-<% @reports.each do |report| %>
+  <% @reports.each do |report| %>
   <tr>
-    <td><%= report.id %></td>
-    <td><%= report.agr_num_questions %></td>
-    <td><%= report.agr_num_participants %></td>
-    <td><%= report.agr_avg_score %></td>
+    <td><%= report.poll.title %></td>
+    <td><%= report.poll.questions.count %></td>
+    <td>to be implemented</td>
+    <td>to be implemented</td>
    
-    <td><%= link_to 'Show', report %></td>
-    <td><%= link_to 'Edit', edit_report_path(report) %></td>
-    <td><%= link_to 'Destroy', report, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td class="tblcol-link"><%= link_to 'Show', report %></td>
+    <!-- <td class="tblcol-link"><%= link_to 'Edit', edit_report_path(report) %></td> -->
+    <td class="tblcol-link last"><%= link_to 'Destroy', report, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
-<% end %>
+  <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Report', new_report_path %>

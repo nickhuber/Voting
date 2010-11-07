@@ -1,0 +1,70 @@
+@import "blueprint/grid";
+@import "partials/color";
+
+body {
+
+}
+
+#container {
+  background-color: white;
+}
+#content-ped {
+  background-color: $bg-color;
+}
+
+#site-title {
+  margin-left: 3.333em;
+}
+
+#main-nav {
+  border-top: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  ul {
+    margin-bottom: 0;
+  }
+  
+  .links li {
+    display: inline;
+    font-size: 1.4em;
+    line-height: 2em;
+    margin: 0 10px;
+  }
+}
+
+.button-create {
+  //@include push(-2);
+}
+
+body.bp table.listing-table {
+  @include prepend(2);
+  @include append(2);
+  
+  th, td {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  th.last, td.last {
+    @include last;
+  }
+  
+  .tblcol-name {
+    @include column(14);
+  }
+  
+  .tblcol-link {
+    @include column(2);
+  }
+}
+
+#footer {
+  background: $bg-color;
+  border-top: solid 2px #BCBCBC;
+  margin-top: 3em;
+  padding: 2em 0;
+  
+  span {
+    @include append(1);
+    @include prepend(1);
+  }
+}

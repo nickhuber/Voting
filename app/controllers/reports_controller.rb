@@ -1,4 +1,7 @@
 class ReportsController < ApplicationController
+  # Catch :mobile format requests and serve :html templates instead.
+  before_filter :override_format
+  
   # GET /reports
   # GET /reports.xml
   def index
@@ -14,7 +17,7 @@ class ReportsController < ApplicationController
   # GET /reports/1.xml
   def show
     @report = Report.find(params[:id])
-
+    @poll = @report.poll #should work
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @report }

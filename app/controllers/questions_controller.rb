@@ -1,5 +1,8 @@
 class QuestionsController < ApplicationController
-
+  
+  # Catch :mobile format requests and serve :html templates instead.
+  before_filter :override_format
+  
   # GET polls/1/questions
   def index
     @poll = Poll.find(params[:poll_id])

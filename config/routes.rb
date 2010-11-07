@@ -1,5 +1,7 @@
 Voting::Application.routes.draw do
   
+  devise_for :users
+
   #EDIT ME TO CHANGE ROOT URL
   root :to => 'polls#index'
   
@@ -17,5 +19,7 @@ Voting::Application.routes.draw do
   #for viewing/manager an active poll
   match 'active_polls/:id', :to => 'active_polls#show', :as => :view_active_poll
   match 'active_polls/:id/next', :to => 'active_polls#next', :as => :next_active_poll
+  
+  match ':id', :to => 'active_polls#clicker'
   
 end
