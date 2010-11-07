@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   
   ROLES = %w[admin pollster]
+  
+  def role?(role)
+    self.role == role.to_s
+  end
 end
