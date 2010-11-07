@@ -50,6 +50,7 @@ class PollsController < ApplicationController
   end
   
   # GET polls/1/present
+  # TODO fix failing on not having any questions
   def present
     @poll = Poll.find(params[:id])
     @active_poll = ActivePoll.new do |a|
