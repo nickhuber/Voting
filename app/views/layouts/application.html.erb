@@ -27,23 +27,26 @@
         <ul class="links">
           <li class="navitem"><%= link_to 'Polls', polls_path %></li>
           <li class="navitem"><%= link_to 'Reports', reports_path %></li>
-          <li class="navitem">Administration</li>
+          
+          <% if can? :manage, :user %>
+            <!-- Only admins will be able to access administer section (Administer Users). -->
+            <li class="navitem">Administration</li>
+          <% end %>
         </ul>
       </div>
       <% end %>
     </div>
-  
+    
     <div id="content">
       <h2><%= yield :title %></h2>
       <%= yield %>
     </div>
     
-
-    <div id="content-ped"></div><!-- Full height column hack -->
-
+    <!-- Full height column -->
+    <div id="content-ped"></div>
     <div id="footer">
       <div class="first-col">BCIT Polling System</div>
-      <div class="second-col">Data Communications, Team Destruction - 2010</div>
+      <div class="second-col">Team Destruction - CST Data Communications, 2010</div>
     </div>
   </div>
 </body>
