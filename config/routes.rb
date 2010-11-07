@@ -1,5 +1,7 @@
 Voting::Application.routes.draw do
   
+  devise_for :users
+
   #EDIT ME TO CHANGE ROOT URL
   root :to => 'polls#index'
   
