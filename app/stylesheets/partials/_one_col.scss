@@ -30,7 +30,8 @@ body.one-col {
   }
   
   #content {
-    @include column($blueprint-grid-columns); 
+    @include column($blueprint-grid-columns);
+    padding: 0 $blueprint-grid-width;
   }
   
   #content-ped {

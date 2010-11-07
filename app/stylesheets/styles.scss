@@ -1,5 +1,15 @@
 @import "blueprint/grid";
+
 @import "partials/color";
+
+@import "compass/utilities/general/clearfix";
+@import "compass/utilities/general/min";
+
+@import "compass/utilities/lists/inline-list";
+
+@import "compass/utilities/links/hover-link";
+@import "compass/utilities/links/link-colors";
+
 
 body {
 
@@ -7,32 +17,60 @@ body {
 
 #container {
   background-color: white;
+  
+  #content {
+    @include min-height(35em);
+  }
+  
+  #content-ped {
+    background-color: $bg-color;
+  }
 }
-#content-ped {
-  background-color: $bg-color;
+
+#header {
+  margin-top: 1em;
+  margin-bottom: 2em;
 }
 
 #site-title {
-  margin-left: 3.333em;
+  h1 {
+    @include float-left;
+    @include column(12);
+  }
+  
+  #user-nav {
+    @include float-right;
+    @include column(12);
+    @include last;
+    text-align: right;
+  }
 }
 
 #main-nav {
+  @include clearfix;
+  clear: both;
+
   border-top: 1px solid #CCC;
   border-bottom: 1px solid #CCC;
+
   ul {
     margin-bottom: 0;
+    @include inline-list;
   }
   
   .links li {
-    display: inline;
     font-size: 1.4em;
     line-height: 2em;
     margin: 0 10px;
   }
+  
+  a {
+    @include hover-link;
+  }
 }
 
 .button-create {
-  //@include push(-2);
+  /* "New ____" links should look nice */
 }
 
 body.bp table.listing-table {
@@ -59,12 +97,24 @@ body.bp table.listing-table {
 
 #footer {
   background: $bg-color;
-  border-top: solid 2px #BCBCBC;
+  border-top: solid 2px $footer-bg-color;
   margin-top: 3em;
   padding: 2em 0;
   
   span {
     @include append(1);
     @include prepend(1);
+  }
+  
+  .first-col {
+    @include push(1);
+    @include column(11);
+  }
+  
+  .second-col {
+    @include pull(1);
+    @include column(11);
+    @include last;
+    text-align: right;
   }
 }

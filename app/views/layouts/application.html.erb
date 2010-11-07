@@ -11,23 +11,23 @@
 <body class="bp one-col">
   <div id="container" class="">
     <div id="header">
-      <div id="site-title"><h1>Pollster</h1></div>
-      
-      <div id="user-nav">
+      <div id="site-title">
+        <h1>Pollster</h1>
+
         <% if user_signed_in? %>
+        <div id="user-nav">
           Signed in as <%= current_user.email %>. Not you?
           <%= link_to "Sign out", destroy_user_session_path %>
+        </div>
         <% end %>
       </div>
-      
+    
       <% if user_signed_in? %>
       <div id="main-nav">
         <ul class="links">
-          <li class="navitem">Home</li> 
           <li class="navitem"><%= link_to 'Polls', polls_path %></li>
           <li class="navitem"><%= link_to 'Reports', reports_path %></li>
           <li class="navitem">Administration</li>
-          <li class="navitem">Logout</li>
         </ul>
       </div>
       <% end %>
@@ -42,8 +42,8 @@
     <div id="content-ped"></div><!-- Full height column hack -->
 
     <div id="footer">
-      <span>BCIT Polling System</span>
-      <span>Data Communications, Team Destruction - 2010</span>
+      <div class="first-col">BCIT Polling System</div>
+      <div class="second-col">Data Communications, Team Destruction - 2010</div>
     </div>
   </div>
 </body>
