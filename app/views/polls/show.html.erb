@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'jquery.tablednd_0_5.js', 'questions.js' %>
+<% end %>
+
 <% content_for :title do %>
   <%= @poll.title %>
 <% end %>
@@ -6,22 +10,33 @@
   <%= notice %>
 <% end %>
 
-<p>
-	<b>Questions:</b>
-	<%= link_to "View all of this poll's questions", poll_questions_path(@poll) %>
-	<ul>
-	<% if @poll.questions.empty? %>
-	  <small>No questions.</small>
-	<% else %>
-	  <% @poll.questions.each do |q| %>
-		  <li><%= link_to q.body, question_path(q) %> - <%= q.weight %></li>
-		<% end %>
-	<% end %>
-	</ul>
-	<p><%= link_to 'Add a new question', new_poll_question_path(@poll) %> | <%= link_to 'Edit poll', edit_poll_path(@poll) %></p>
-	
-	<p><%= link_to 'Present Poll', poll_present_path %></p>
-</p>
+<b>Questions:</b>
+<%= link_to "View all of this poll's questions", poll_questions_path(@poll) %>
+<table id="poll-questions">
+  <% if @poll.questions.empty? %>
+    <tr>
+      <td></td>
+      <td>No questions.</td>
+      <td></td>
+    </tr>
+  <% else %>
+    <tr>
+      <th></th>
+      <th>Question</th>
+      <th>Weight</th>
+    </tr>
+    <% @poll.questions.each do |q| %>
+      <tr>
+        <td class="dnd-tab"></td>
+        <td><%= link_to q.body, question_path(q) %></td>
+        <td><%= q.weight %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+<p><%= link_to 'Add a new question', new_poll_question_path(@poll) %> | <%= link_to 'Edit poll', edit_poll_path(@poll) %></p>
+
+<p><%= link_to 'Present Poll', poll_present_path %></p>
 
 
 
