@@ -19,6 +19,18 @@ class PollsController < ApplicationController
   # GET /polls/1/edit
   def edit
   end
+  
+  # POST: ...
+  def sort
+    @poll.questions.each do |q|
+      #q.weight = 10;
+      q.category_ids = {:weight => 10}, false
+      q.save
+    end
+    #render :nothing => true, :status => 200
+    
+    redirect_to(@poll, :notice => 'Poll was successfully ordered.')
+  end
 
   # POST /polls
   def create

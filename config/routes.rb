@@ -22,4 +22,6 @@ Voting::Application.routes.draw do
   
   match ':id', :to => 'active_polls#clicker'
   
+  match 'polls/:id/sort', :to => 'polls#sort', :as => :poll_questions_sort
+  
 end

@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <%= javascript_include_tag 'jquery.tablednd_0_5.js', 'questions.js' %>
+  <%= javascript_include_tag 'jquery.tablednd_0_5', 'questions' %>
 <% end %>
 
 <% content_for :title do %>
@@ -13,6 +13,7 @@
 <b>Questions:</b>
 <%= link_to "View all of this poll's questions", poll_questions_path(@poll) %>
 <table id="poll-questions">
+  <tbody>
   <% if @poll.questions.empty? %>
     <tr>
       <td></td>
@@ -20,7 +21,7 @@
       <td></td>
     </tr>
   <% else %>
-    <tr>
+    <tr class="nodrop nodrag">
       <th></th>
       <th>Question</th>
       <th>Weight</th>
@@ -33,7 +34,9 @@
       </tr>
     <% end %>
   <% end %>
+  </tbody>
 </table>
+<%= link_to "save order", poll_questions_sort_path %>
 <p><%= link_to 'Add a new question', new_poll_question_path(@poll) %> | <%= link_to 'Edit poll', edit_poll_path(@poll) %></p>
 
 <p><%= link_to 'Present Poll', poll_present_path %></p>
