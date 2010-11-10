@@ -22,8 +22,9 @@ class PollsController < ApplicationController
   
   # POST: ...
   def sort
-    params[:pollquestions].each_with_index do |pq, index|
-      pq.update_attributes :weight => index
+    params[:weight].each do |id, weight|
+      @pollquestion = @poll.pollquestions.find(id)
+      @pollquestion.update_attributes :weight => weight[0]
     end
     #render :nothing => true, :status => 200
     redirect_to(@poll, :notice => 'Poll was successfully ordered.')
