@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  poll: 
+  question: 
+  weight: 1
+
+two:
+  poll: 
+  question: 
+  weight: 1

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101107045330) do
+ActiveRecord::Schema.define(:version => 20101110043900) do
 
   create_table "active_polls", :force => true do |t|
     t.integer "poll_id"
@@ -25,16 +25,16 @@ ActiveRecord::Schema.define(:version => 20101107045330) do
     t.boolean  "correct",     :default => false
   end
 
+  create_table "pollquestions", :force => true do |t|
+    t.integer "poll_id"
+    t.integer "question_id"
+    t.integer "weight"
+  end
+
   create_table "polls", :force => true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "polls_questions", :id => false, :force => true do |t|
-    t.integer "poll_id"
-    t.integer "question_id"
-    t.integer "weight",      :default => 0
   end
 
   create_table "questions", :force => true do |t|

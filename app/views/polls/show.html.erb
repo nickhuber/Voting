@@ -12,9 +12,11 @@
 
 <b>Questions:</b>
 <%= link_to "View all of this poll's questions", poll_questions_path(@poll) %>
+
+<%= form_tag({:controller => :polls, :action => "sort"}, :method => "post") do %>
 <table id="poll-questions">
   <tbody>
-  <% if @poll.questions.empty? %>
+  <% if @poll.pollquestions.empty? %>
     <tr>
       <td></td>
       <td>No questions.</td>
@@ -26,17 +28,19 @@
       <th>Question</th>
       <th>Weight</th>
     </tr>
-    <% @poll.questions.each do |q| %>
+    <% @poll.pollquestions.each do |pq| %>
       <tr>
         <td class="dnd-tab"></td>
-        <td><%= link_to q.body, question_path(q) %></td>
-        <td><%= q.weight %></td>
+        <td><%= link_to pq.question.body, question_path(pq.question) %></td>
+        <td><%= select_tag("weight[#{pq.id.to_s}][]", options_for_select((0..@poll.pollquestions.length - 1).to_a, pq.weight)) %></td>
       </tr>
     <% end %>
   <% end %>
   </tbody>
 </table>
-<%= link_to "save order", poll_questions_sort_path %>
+<%= submit_tag "Save Order" %>
+<% end %>
+
 <p><%= link_to 'Add a new question', new_poll_question_path(@poll) %> | <%= link_to 'Edit poll', edit_poll_path(@poll) %></p>
 
 <p><%= link_to 'Present Poll', poll_present_path %></p>
