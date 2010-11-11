@@ -1,15 +1,22 @@
 $(document).ready(function() {
-  $('#poll-questions').tableDnD({
+  // Hide form items.
+  $("form input").hide();
+  $(".question-weight").hide();
+  
+  // Bind anonymous function to the onDrop event.
+  $("#poll-questions").tableDnD({
     onDrop: function(table, row) {
-      $.ajax({
-        type: "POST",
-        url: "<%= url_for(:action => 'sort') %>",
-        processData: false,
-        data: $.tableDnD.serialize() + '&authenticity_token=' + encodeURIComponent('<%= form_authenticity_token if protect_against_forgery? %>'),
-        success: function(msg) {
-          alert("The specifications have been updated")
-        }
+      var rows = $("tr", table).toArray();
+      // First row is headers (doesn't get a weight).
+      rows.shift();
+
+      // Updating weight values for each element based on order.
+      $(rows).each(function (i, row){
+        $("select", row).val(i);
       });
+      
+      // Trigger form's submit event.
+      $("form#questions-sort").submit();
     }
   });
 });

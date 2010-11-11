@@ -24,10 +24,13 @@ class PollsController < ApplicationController
   def sort
     params[:weight].each do |id, weight|
       @pollquestion = @poll.pollquestions.find(id)
-      @pollquestion.update_attributes :weight => weight[0]
+      @pollquestion.update_attributes :weight => weight
     end
-    #render :nothing => true, :status => 200
-    redirect_to(@poll, :notice => 'Poll was successfully ordered.')
+    
+    respond_to do |format|
+      format.html { redirect_to @poll, :notice => 'Poll was successfully ordered.' }
+      format.js
+    end
   end
 
   # POST /polls
