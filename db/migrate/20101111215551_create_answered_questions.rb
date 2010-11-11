@@ -1,7 +1,7 @@
 class CreateAnsweredQuestions < ActiveRecord::Migration
   def self.up
     create_table :answered_questions do |t|
-      t.references :particant
+      t.references :participant
       t.references :question
       t.references :answer
     end

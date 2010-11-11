@@ -16,7 +16,6 @@ class ReportsController < ApplicationController
   # GET /reports/1
   # GET /reports/1.xml
   def show
-    @poll = @report.poll #should work
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @report }

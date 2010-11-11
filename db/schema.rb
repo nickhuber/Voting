@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20101111215551) do
   end
 
   create_table "answered_questions", :force => true do |t|
-    t.integer "particant_id"
+    t.integer "participant_id"
     t.integer "question_id"
     t.integer "answer_id"
   end
