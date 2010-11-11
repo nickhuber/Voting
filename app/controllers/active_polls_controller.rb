@@ -40,6 +40,7 @@ class ActivePollsController < ApplicationController
     AnsweredQuestion.new do |a|
       a.question = @active_poll.question
       a.answer = params[:answer]
+      a.save
     end
   end
 end
