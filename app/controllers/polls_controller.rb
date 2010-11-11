@@ -66,6 +66,11 @@ class PollsController < ApplicationController
       a.question_id = @poll.questions.first.id
     end
     
+    Report.new do |r|
+      r.poll_id = @poll.id
+      r.save # might need to do error checking here
+    end
+    
     if @active_poll.save
       #redirect to the screen to manage the poll from, right now goes to the wrong ActivePoll(pollID)
       redirect_to(view_active_poll_path(@active_poll), :notice => 'Poll is now active for polling.')
