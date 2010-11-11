@@ -7,10 +7,28 @@ class ActivePollsController < ApplicationController
   # GET /active_polls/1/next
   def next
     @active_poll = ActivePoll.find(params[:id])
-    #make the question be the next question
-    render :action => :show
+    currentquestion = Pollquestion.current(@active_poll)
+
+    unless (temp = Pollquestion.next(currentquestion)).nil?
+      @active_poll.question = temp.question
+      @active_poll.save
+    end
+   
+    redirect_to :action => :show
   end
   
+  def prev
+    @active_poll = ActivePoll.find(params[:id])
+    currentquestion = Pollquestion.current(@active_poll)
+
+    unless (temp = Pollquestion.prev(currentquestion)).nil?
+      @active_poll.question = temp.question
+      @active_poll.save
+    end
+
+    redirect_to :action => :show
+  end
+      
   # GET /1
   def clicker
     @active_poll = ActivePoll.find(params[:id])

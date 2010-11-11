@@ -19,6 +19,7 @@ Voting::Application.routes.draw do
   #for viewing/manager an active poll
   match 'active_polls/:id', :to => 'active_polls#show', :as => :view_active_poll
   match 'active_polls/:id/next', :to => 'active_polls#next', :as => :next_active_poll
+  match 'active_polls/:id/prev', :to => 'active_polls#prev', :as => :prev_active_poll
   
   match ':id', :to => 'active_polls#clicker'
   
