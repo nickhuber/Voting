@@ -33,4 +33,13 @@ class ActivePollsController < ApplicationController
   def clicker
     @active_poll = ActivePoll.find(params[:id])
   end
+  
+  # GET /1/submit/ANSWERID
+  def submit
+    @active_poll = ActivePoll.find(params[:id])
+    AnsweredQuestion.new do |a|
+      a.question = @active_poll.question
+      a.answer = params[:answer]
+    end
+  end
 end
