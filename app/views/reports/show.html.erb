@@ -37,11 +37,11 @@ $(function () {
 
 <h2> Question stuff </h2>
 <% @report.poll.questions.each do |q| %>
-  <%= q.body %> -=- <%= AnsweredQuestion.num_correct(q) %> <br/>
+  <%= q.body %> - <%= AnsweredQuestion.num_correct(q) %> <br/>
 <% end %>
 
 
-<hr/><hr/><hr/>
+<hr/>
 
 <p>
   <b>Date:</b>
