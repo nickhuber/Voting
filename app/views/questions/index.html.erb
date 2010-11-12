@@ -1,25 +1,55 @@
 <% content_for :title do %>
-  Listing questions for <%= @poll.title %>
+  Add questions to "<%= @poll.title %>"
 <% end %>
 
-<table>
-  <tr>
-    <th>Body</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @questions.each do |q| %>
-  <tr>
-    <td><%= q.body %></td>
-    <td><%= link_to 'Show', question_path(q) %></td>
-    <td><%= link_to 'Edit', edit_question_path(q) %></td>
-    <td><%= link_to 'Delete', question_path(q), :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<% content_for :head do %>
+  <%= javascript_include_tag 'jquery.tablednd_0_5' %>
 <% end %>
-</table>
-
-<br />
 
 <%= link_to 'New Question', new_poll_question_path %>
+
+<!--
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#all-questions").tableDnD();
+  $("#poll-questions").tableDnD();
+});
+</script>
+-->
+
+<div id="question-listing">
+  <table class="question-index" id="poll-questions">
+    <thead>
+      <tr>
+        <th class="question">Questions currently in "<%= @poll.title %>"</th>
+        <th class="question-remove"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @poll_questions.each do |q| %>
+      <tr>
+        <td class="question"><%= q.body %></td>
+        <td class="question-remove"><%= link_to 'X', "#" %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <table class="question-index" id="all-questions">
+    <thead>
+      <tr>
+        <th class="question">Your Questions</th>
+        <th class="question-add"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @remaining_questions.each do |q| %>
+      <tr>
+        <td class="question"><%= q.body %></td>
+        <td class="question-add"><%= link_to 'Add', "#" %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>

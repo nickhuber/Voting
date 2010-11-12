@@ -10,8 +10,7 @@
   <%= notice %>
 <% end %>
 
-<b>Questions:</b>
-<%= link_to "View all of this poll's questions", poll_questions_path(@poll) %>
+<%= link_to 'New question', new_poll_question_path(@poll) %>
 
 <% if @poll.pollquestions.empty? %>
   <div class="poll-questions-empty">
@@ -23,7 +22,7 @@
     <tbody>
       <tr class="nodrop nodrag">
         <th class="tabledrag-handle"></th>
-        <th class="question">Question</th>
+        <th class="question">Questions</th>
         <th class="question-button-show"></th>
         <th class="question-weight">Weight</th>
       </tr>
@@ -43,7 +42,7 @@
   <% end %>
 <% end %>
 
-<p><%= link_to 'Add a new question', new_poll_question_path(@poll) %> | <%= link_to 'Edit poll', edit_poll_path(@poll) %></p>
+<p><%= link_to 'Edit poll', edit_poll_path(@poll) %></p>
 
 <p><%= link_to 'Present Poll', poll_present_path %></p>
 
