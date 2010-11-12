@@ -4,16 +4,15 @@ class QuestionsController < ApplicationController
   # Catch :mobile format requests and serve :html templates instead.
   before_filter :override_format
   
-  # GET polls/1/questions
+  # GET questions
   def index
     @poll = Poll.find(params[:poll_id])
-    @questions = @poll.questions.all
+    @poll_questions = @poll.questions.all
+    @remaining_questions = @questions - @poll_questions
   end
 
-  # GET polls/1/questions/1
-  def show
- #   @poll = Poll.find(params[:poll_id])
-    @question = Question.find(params[:id])
+  # GET questions/1
+  def show    
   end
 
   # GET polls/1/questions/new
@@ -24,8 +23,6 @@ class QuestionsController < ApplicationController
 
   # GET polls/1/questions/1/edit
   def edit
-    @poll = Poll.find(params[:poll_id])
-    @question = @poll.questions.find(params[:id])
   end
 
   # POST polls/1/questions
@@ -42,11 +39,14 @@ class QuestionsController < ApplicationController
 
   # PUT polls/1/questions/1
   def update
-    @question = Question.find(params[:id])
-    @poll = Poll.find(params[:poll_id])
-
+    if params[:poll]
+      @destination = polls_path(params[:poll])
+    else
+      @destination = @question
+    end
+    
     if @question.update_attributes(params[:question])
-      redirect_to(@question, :notice => 'Question was successfully updated.')
+      redirect_to(@destination, :notice => 'Question was successfully updated.')
     else
       render :action => "edit" 
     end
@@ -54,7 +54,6 @@ class QuestionsController < ApplicationController
 
   # DELETE polls/1/questions/1
   def destroy
-    @question = Question.find(params[:id])
     @question.destroy
   end
 end
