@@ -26,13 +26,22 @@ $(function () {
   <%= notice %>
 <% end %>
 
+<h2> User stuff </h2>
 <% @report.participants.each do |p| %>
-  User: <%= p.id %>
+  User: <%= p.id %><br/>
   <% p.answered_questions.each do |a| %>
-    Question: <%= a.question %>
-    Answer: <%= a.answer %>
+    Question: <%= a.question.body %> <br/>
+    Answer: <%= a.answer.body %><br/>
   <% end %>
 <% end %>
+
+<h2> Question stuff </h2>
+<% @report.poll.questions.each do |q| %>
+  <%= q.body %> -=- <%= AnsweredQuestion.num_correct(q) %> <br/>
+<% end %>
+
+
+<hr/><hr/><hr/>
 
 <p>
   <b>Date:</b>

@@ -34,13 +34,14 @@ class ActivePollsController < ApplicationController
     @active_poll = ActivePoll.find(params[:id])
   end
   
-  # GET /1/submit/ANSWERID
+  # GET /1/submit/
   def submit
     @active_poll = ActivePoll.find(params[:id])
     AnsweredQuestion.new do |a|
       a.question = @active_poll.question
-      a.answer = params[:answer]
+      a.answer = Answer.find(params[:answer]) #TODO: make sure this answer fits this question., ALSO, make sure we dont have duplicate submissions from each user
       a.save
     end
+    redirect_to :action => :clicker
   end
 end
