@@ -9,6 +9,7 @@
 
 @import "compass/utilities/links/hover-link";
 @import "compass/utilities/links/link-colors";
+@import "blueprint/debug";
 
 
 body {
@@ -16,6 +17,7 @@ body {
 }
 
 #container {
+  //@include showgrid();
   background-color: white;
   
   #content {
@@ -28,8 +30,8 @@ body {
 }
 
 #header {
-  margin-top: 1em;
-  margin-bottom: 2em;
+  @include prepend-top(1em);
+  @include append-bottom(2em);
 }
 
 #site-title {
@@ -117,4 +119,42 @@ body.bp table.listing-table {
     @include last;
     text-align: right;
   }
+}
+
+#question-listing {
+  overflow: auto;
+  @include column(22);
+}
+
+body.bp table.question-index,
+body.bp table.question-index thead,
+body.bp table.question-index tbody {
+  @include float-left;
+  @include column(11)
+  
+
+}
+td, th {
+  @include min-height(2em);
+}
+
+#all-questions,
+#all-questions thead,
+#all-questions tbody {
+  @include last;
+}
+
+.question {
+  @include column(9);
+}
+
+.question-add,
+.question-remove {
+  @include column(1);
+  @include last;
+}
+
+.question,
+.action-col {
+  margin-right: 0;
 }
