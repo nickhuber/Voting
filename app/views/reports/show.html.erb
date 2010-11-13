@@ -5,20 +5,43 @@
  <div id="placeholder" style="width:600px;height:300px;"></div>
 <script id="source" language="javascript" type="text/javascript">
 $(function () {
-    var d1 = [];
-    for (var i = 0; i < 14; i += 0.5)
-        d1.push([i, Math.sin(i)]);
+    var num_of_participants = <%= @report.participants.count %>;
+    var num_of_questions    = <%= @report.poll.questions.count %>;
+    var counter = .5;
+    var bar_counter = 0
+    
+	$.plot($("#placeholder"), [
+        <% @report.poll.questions.each do |q| %>  
+        {
+            data: [[bar_counter++,<%= AnsweredQuestion.num_correct(q) %>]],
+            bars: { show: true}
+        },
+        <% end %>
+	],
+	{
+		xaxis: {
+		        max : num_of_questions,
+                ticks: [ 
+                        <% @report.poll.questions.each do |q| %>  
+                            [counter++, "<%= q.body.to_s %>"],
+                        <% end %>
+                       ],		       
+		},
+        yaxis: {
+            min : 0
+            //max : num_of_participants  
+        },
+		legend: {
+		    show: false
+		}
 
-    var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
-
-    // a null signifies separate line segments
-    var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
-    var d4 = [[0][20]];
- 
-   $.plot($("#placeholder"),[{data:d4,bars: {show: true,barWidth: 1,fill: true},
-       label: "Bar"}]);
+	});
 });
-</script>
+	</script>
+
+
+
+
 
 <% content_for :title do %>
   Report for:<%=@report.poll.title%>
@@ -32,13 +55,13 @@ $(function () {
 <% @report.participants.each do |p| %>
   User: <%= p.id %><br/>
   <% p.answered_questions.each do |a| %>
-<<<<<<< HEAD
+
     Question: <%= a.question.body %>
     Answer: <%= a.answer.body %>
-=======
+
     Question: <%= a.question.body %> <br/>
     Answer: <%= a.answer.body %><br/>
->>>>>>> 9f4a288bcf2bdd53c21a62286dd0039829b486a2
+
   <% end %>
 <% end %>
 
