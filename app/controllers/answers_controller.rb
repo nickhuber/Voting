@@ -32,7 +32,7 @@ class AnswersController < ApplicationController
     @answer.question_id = @question.id
 
     if @answer.save
-      redirect_to(@answer, :notice => 'Answer was successfully created.')
+      redirect_to(@answer.question, :notice => 'Answer was successfully created.')
     else
       render :action => "new"
     end
@@ -43,7 +43,7 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
 
     if @answer.update_attributes(params[:answer])
-      redirect_to(@answer, :notice => 'Answer was successfully updated.')
+      redirect_to(@answer.question, :notice => 'Answer was successfully updated.')
     else
       render :action => "edit"
     end
