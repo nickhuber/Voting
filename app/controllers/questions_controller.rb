@@ -1,8 +1,6 @@
 class QuestionsController < ApplicationController
   load_and_authorize_resource
-  
-  # Catch :mobile format requests and serve :html templates instead.
-  before_filter :override_format
+  respond_to :html, :js
   
   # GET questions
   def index
@@ -51,7 +49,23 @@ class QuestionsController < ApplicationController
       render :action => "edit" 
     end
   end
-
+  
+  # PUT polls/1/questions/1/add
+  def add_to_poll
+    @poll = Poll.find(params[:poll_id])
+    @question = Question.find(params[:q_id])
+    @poll.questions << @question
+    respond_with @poll, @question
+  end
+  
+  # PUT polls/1/questions/1/remove
+  def remove_from_poll
+    @poll = Poll.find(params[:poll_id])
+    @question = Question.find(params[:q_id]);
+    @poll.questions.delete(@question)
+    respond_with @poll, @question
+  end
+  
   # DELETE polls/1/questions/1
   def destroy
     @question.destroy

@@ -1,0 +1,8 @@
+var question = $(".question-<%= @question.id %>").remove();
+var question_link = $(".question-link", question);
+var link = "<%= escape_javascript(link_to 'X', remove_from_poll_path(@poll.id, @question.id), :remote => true) %>";
+
+$("a", question_link).remove();
+$(question_link).append(link);
+
+$("#poll-questions tbody").append(question);

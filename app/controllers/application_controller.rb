@@ -8,7 +8,4 @@ class ApplicationController < ActionController::Base
   end
   
   private
-  def override_format
-    request.format = :html
-  end
 end

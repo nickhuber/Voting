@@ -1,7 +1,4 @@
-class AnswersController < ApplicationController
-  # Catch :mobile format requests and serve :html templates instead.
-  before_filter :override_format
-  
+class AnswersController < ApplicationController  
   # GET /question/1/answers
   def index
     @question = Questions.find(params[:question_id])

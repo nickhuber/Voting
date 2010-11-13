@@ -27,4 +27,7 @@ Voting::Application.routes.draw do
   
   match 'polls/:id/sort', :to => 'polls#sort', :as => :poll_questions_sort
   
+  match 'polls/:poll_id/questions/:q_id/add', :to => 'questions#add_to_poll', :as => :add_to_poll
+  match 'polls/:poll_id/questions/:q_id/remove', :to => 'questions#remove_from_poll', :as => :remove_from_poll
+  
 end

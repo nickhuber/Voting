@@ -3,19 +3,11 @@
 <% end %>
 
 <% content_for :head do %>
-  <%= javascript_include_tag 'jquery.tablednd_0_5' %>
+  <%= javascript_include_tag 'jquery.tablednd_0_5', 'questions' %>
 <% end %>
 
+<%= link_to 'Back to poll', poll_path(@poll) %>
 <%= link_to 'New Question', new_poll_question_path %>
-
-<!--
-<script type="text/javascript">
-$(document).ready(function() {
-  $("#all-questions").tableDnD();
-  $("#poll-questions").tableDnD();
-});
-</script>
--->
 
 <div id="question-listing">
   <table class="question-index" id="poll-questions">
@@ -27,9 +19,9 @@ $(document).ready(function() {
     </thead>
     <tbody>
     <% @poll_questions.each do |q| %>
-      <tr>
+      <tr class="question-<%= q.id %>">
         <td class="question"><%= q.body %></td>
-        <td class="question-remove"><%= link_to 'X', "#" %></td>
+        <td class="question-link"><%= link_to 'X', remove_from_poll_path(@poll.id, q.id), :remote => true %></td>
       </tr>
     <% end %>
     </tbody>
@@ -44,9 +36,9 @@ $(document).ready(function() {
     </thead>
     <tbody>
     <% @remaining_questions.each do |q| %>
-      <tr>
+      <tr class="question-<%= q.id %>">
         <td class="question"><%= q.body %></td>
-        <td class="question-add"><%= link_to 'Add', "#" %></td>
+        <td class="question-link"><%= link_to 'Add', add_to_poll_path(@poll.id, q.id), :remote => true %></td>
       </tr>
     <% end %>
     </tbody>

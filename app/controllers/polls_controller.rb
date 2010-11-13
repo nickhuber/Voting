@@ -1,8 +1,6 @@
 class PollsController < ApplicationController
   load_and_authorize_resource
-  
-  # Catch :mobile format requests and serve :html templates instead.
-  before_filter :override_format
+  respond_to :html, :js
   
   # GET /polls
   def index
@@ -26,11 +24,7 @@ class PollsController < ApplicationController
       @pollquestion = @poll.pollquestions.find(id)
       @pollquestion.update_attributes :weight => weight
     end
-    
-    respond_to do |format|
-      format.html { redirect_to @poll, :notice => 'Poll was successfully ordered.' }
-      format.js
-    end
+    respond_with @poll
   end
 
   # POST /polls
