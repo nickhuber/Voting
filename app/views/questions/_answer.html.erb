@@ -1,0 +1,7 @@
+<%= fields_for "question[answer_attributes][]", answer do |a| %>
+  <div class="answer">
+    <%= a.label :body, "Answer" %>
+    <%= a.text_field :body %>
+    <%= link_to_function "remove", "$(this).parent('.answer').remove()" %>
+  </div>
+<% end %>

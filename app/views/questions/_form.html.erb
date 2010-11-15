@@ -14,7 +14,15 @@
     <%= f.label :body, "Question" %>
     <%= f.text_field :body %>
   </div>
-
+  
+  <p>
+    <%= link_to  "Add another answer", "?num_answers=" + (@num_answers + 1).to_s %>
+  </p>
+  
+  <div id="answers">
+    <%= render :partial => 'answer', :collection => @question.answers %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %> 
   </div>
