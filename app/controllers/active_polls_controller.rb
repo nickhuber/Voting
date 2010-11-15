@@ -32,6 +32,7 @@ class ActivePollsController < ApplicationController
   # GET /1
   def clicker
     @active_poll = ActivePoll.find(params[:id])
+    user_session.add_active_poll(@active_poll)
   end
   
   # GET /1/submit/
