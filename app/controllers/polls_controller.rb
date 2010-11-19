@@ -30,7 +30,7 @@ class PollsController < ApplicationController
   # POST /polls
   def create
     if @poll.save
-      redirect_to(@poll, :notice => 'Poll was successfully created.')
+      redirect_to(poll_questions_path(@poll), :notice => 'Poll was successfully created.')
     else
       render :action => "new"
     end
@@ -39,7 +39,7 @@ class PollsController < ApplicationController
   # PUT /polls/1
   def update
     if @poll.update_attributes(params[:poll])
-      redirect_to(@poll, :notice => 'Poll was successfully updated.')
+      redirect_to(poll_questions_path(@poll), :notice => 'Poll was successfully updated.')
     else
       render :action => "edit"
     end
