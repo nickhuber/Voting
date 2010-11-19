@@ -1,0 +1,13 @@
+<%= fields_for "question[answer_attributes][]", answer do |a| %>
+  <div class="answer">
+    <%= a.label :body, "Answer" %>
+    <%= a.text_field :body, :index => nil %>
+    <% if answer.new_record? %>
+      <%= link_to_function "remove", "$(this).parent('.answer').remove()" %>
+    <% else %>
+      <%= link_to_function "remove", "mark_for_destroy(this)" %>
+      <%= a.hidden_field :should_destroy, :index => nil, :class => 'should_destroy' %>
+      <%= a.hidden_field :id, :index => nil %>
+    <% end %>
+  </div>
+<% end %>

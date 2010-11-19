@@ -1,0 +1,1 @@
+Poll without questions errors on being presented
