@@ -31,7 +31,22 @@ class ActivePollsController < ApplicationController
       
   # GET /1
   def clicker
+    # Active poll being accessed.
     @active_poll = ActivePoll.find(params[:id])
+    
+    # Check if user is particpating in this poll. 
+    if user_session.active_poll != @active_poll
+                    
+      # Either user hasn't bound to a poll or their session has expired.
+      if user_session.active_poll.nil? || !ActivePoll.exists?(user_session.active_poll)
+        # Bind session to active poll.
+        user_session.active_poll = @active_poll
+        
+      else
+        # Deal with the cheeky user trying to jump ship... (Redirect?)
+        
+      end
+    end
   end
   
   # GET /1/submit/

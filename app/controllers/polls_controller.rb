@@ -60,10 +60,12 @@ class PollsController < ApplicationController
       a.question_id = @poll.questions.first.id
     end
     
-    Report.new do |r|
+    report = Report.new do |r|
       r.poll_id = @poll.id
       r.save # might need to do error checking here
     end
+    
+    @active_poll.report_id = report.id;
     
     if @active_poll.save
       #redirect to the screen to manage the poll from, right now goes to the wrong ActivePoll(pollID)

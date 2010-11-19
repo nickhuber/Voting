@@ -8,4 +8,9 @@ class ApplicationController < ActionController::Base
   end
   
   private
+  
+  def user_session
+    @user_session ||= UserSession.new(session)
+  end
+  helper_method :user_session
 end
