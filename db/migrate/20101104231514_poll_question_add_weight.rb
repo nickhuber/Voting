@@ -6,8 +6,6 @@ class PollQuestionAddWeight < ActiveRecord::Migration
   end
 
   def self.down
-    change_table :polls_questions do |t|
-      remove_column :polls_questions, :weight
-    end
+    remove_column :polls_questions, :weight
   end
 end

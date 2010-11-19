@@ -4,12 +4,30 @@ class Question < ActiveRecord::Base
   has_many :answers
   has_many :active_polls
   
-  accepts_nested_attributes_for :answers
-  validate :length => {:min => 5}
+  after_update :save_answers
+  
+  validates :body, :presence => true
+  validates_associated :answers
   
   def answer_attributes=(answer_attributes)
     answer_attributes.each do |attributes|
-      answers.build(attributes)
+      if attributes[:id].blank?
+        answers.build(attributes)
+      else
+        answer = answers.detect { |a| a.id == attributes[:id].to_i }
+        answer.attributes = attributes
+      end
     end
   end
+  
+  def save_answers
+    answers.each do |a|
+      if a.should_destroy?
+        a.destroy
+      else
+        a.save(false) #ignore validation, is handled by a question
+      end
+    end
+  end
+    
 end
