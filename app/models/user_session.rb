@@ -4,12 +4,16 @@ class UserSession
     @session = session
   end
   
-  def id()
+  def id
     @session[:session_id]
   end
   
-  def active_poll()
+  def active_poll
     @session[:active_poll_id]
+  end
+  
+  def participant
+    @session[:participant]
   end
   
   def active_poll=(active_poll)
@@ -19,6 +23,7 @@ class UserSession
     if !participant.save
       # Error check here
     end
+    @session[:participant] = participant.id
   end
   
   def unbind()
