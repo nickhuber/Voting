@@ -50,7 +50,7 @@ class ActivePollsController < ApplicationController
   
   # GET /1/submit/
   def submit
-    redirect_to :action => :clicker and return if user_session.participant.nil?
+    redirect_to :action => :clicker and return if user_session.participant.nil? #check if the user has a session or not
     
     @active_poll = ActivePoll.find(params[:id])
     if AnsweredQuestion.exists?({:question_id => @active_poll.question.id, :participant_id => user_session.participant})
@@ -58,7 +58,7 @@ class ActivePollsController < ApplicationController
     else
       AnsweredQuestion.new do |a|
         a.question = @active_poll.question
-        a.answer = Answer.find(params[:answer]) #TODO: make sure this answer fits this question., ALSO, make sure we dont have duplicate submissions from each user
+        a.answer = Answer.find(params[:answer])
         a.participant_id = user_session.participant
         a.save
       end
