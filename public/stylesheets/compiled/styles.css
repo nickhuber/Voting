@@ -246,3 +246,10 @@ td, th {
 .action-col {
   margin-right: 0;
 }
+
+/* line 162, ../../../app/stylesheets/styles.scss */
+p#notice {
+  color: green;
+  font-family: monospace;
+  font-size: 1.4em;
+}
