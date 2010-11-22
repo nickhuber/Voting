@@ -1,13 +1,8 @@
-<pre>
-  SESSION ID: <%= session[:session_id] %>
-</pre>
-
 <% content_for :head do %>
   <%= javascript_include_tag 'clicker' %>
 <% end %>
 
 <% content_for :title do %>
-  <span id="active_poll_id"><%= @active_poll.id %></span>:
   <%= @active_poll.poll.title %>
 <% end %>
 
@@ -24,4 +19,9 @@
       <li class="arrow"><%= link_to a.body, submit_active_poll_path({:answer => a}) %></li>
     <% end %>
   </ol>
+</div>
+
+<div id="next-question">
+  <%= link_to "Load new question", clicker_path(@active_poll.id)%>
+  <small>Once the pollster has changed it</small>
 </div>

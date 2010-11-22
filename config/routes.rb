@@ -23,7 +23,7 @@ Voting::Application.routes.draw do
   
   match 'active_polls/:id/submit', :to => 'active_polls#submit', :as => :submit_active_poll
   
-  match ':id', :to => 'active_polls#clicker'
+  match ':id', :to => 'active_polls#clicker', :as => :clicker
   
   match 'polls/:id/sort', :to => 'polls#sort', :as => :poll_questions_sort
   

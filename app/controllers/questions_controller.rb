@@ -25,11 +25,6 @@ class QuestionsController < ApplicationController
     end
     
     @num_answers.times { @question.answers.build }
-    
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   # GET polls/1/questions/1/edit
@@ -42,7 +37,7 @@ class QuestionsController < ApplicationController
     @question = @poll.questions.create(params[:question])
     
     if @question.save
-      redirect_to(@question, :notice => 'Question was successfully created.')
+      redirect_to(@poll, :notice => 'Question was successfully created.')
     else
       render :action => "new"
     end
