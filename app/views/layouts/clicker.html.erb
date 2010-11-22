@@ -14,28 +14,7 @@
     <div id="header">
       <div id="site-title">
         <h1>Pollster</h1>
-
-        <% if user_signed_in? %>
-        <div id="user-nav">
-          Signed in as <%= current_user.email %>. Not you?
-          <%= link_to "Sign out", destroy_user_session_path %>
-        </div>
-        <% end %>
       </div>
-    
-      <% if user_signed_in? %>
-      <div id="main-nav">
-        <ul class="links">
-          <li class="navitem"><%= link_to 'Polls', polls_path %></li>
-          <li class="navitem"><%= link_to 'Reports', reports_path %></li>
-          
-          <% if can? :manage, :user %>
-            <!-- Only admins will be able to access administer section (Administer Users). -->
-            <li class="navitem">Administration</li>
-          <% end %>
-        </ul>
-      </div>
-      <% end %>
     </div>
     
     <div id="content">
