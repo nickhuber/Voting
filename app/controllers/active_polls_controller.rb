@@ -62,8 +62,11 @@ class ActivePollsController < ApplicationController
     
     @active_poll = ActivePoll.find(params[:id])
     if AnsweredQuestion.exists?({:question_id => @active_poll.question.id, :participant_id => user_session.participant})
-      if @active_poll.question.id == params[:question]
+      if @active_poll.question.id == Answer.find(params[:answer]).question.id
         AnsweredQuestion.find_by_question_id_and_participant_id(@active_poll.question.id, user_session.participant).update_attributes(:answer_id => params[:answer])
+        flash[:notice] = "Answer updated."
+      else
+        flash[:notice] = "That question is no longer being presented."
       end
     else
       AnsweredQuestion.new do |a|
@@ -71,6 +74,7 @@ class ActivePollsController < ApplicationController
         a.answer = Answer.find(params[:answer])
         a.participant_id = user_session.participant
         a.save
+        flash[:notice]= "Answer submitted."
       end
     end
     redirect_to :action => :clicker
