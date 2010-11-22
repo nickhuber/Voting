@@ -3,6 +3,7 @@
 <% end %>
 
 <% content_for :title do %>
+  <span id="active_poll_id"><%= @active_poll.id %></span>
   <%= @active_poll.poll.title %>
 <% end %>
 
@@ -10,15 +11,16 @@
   <%= notice %>
 <% end %>
 
-<div id="question">
+<div id="container_question" >
   <h2><%= @active_poll.question.body %></h2>
 </div>
+
 <div id="answers">
-  <ol>
+  <ul id="container_answers" >
     <% @active_poll.question.answers.each do |a| %>
       <li class="arrow"><%= link_to a.body, submit_active_poll_path({:answer => a}) %></li>
     <% end %>
-  </ol>
+  </ul>
 </div>
 
 <div id="next-question">

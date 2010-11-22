@@ -4,9 +4,6 @@ $(document).ready(function() {
   var question_id = $("#active_question_id").text();
   var request = { id: id, question_id: question_id, }
   
-  console.log(id);
-  console.log(question_id);
-  
   $.ajax({
     url: dest,
     data: request,
