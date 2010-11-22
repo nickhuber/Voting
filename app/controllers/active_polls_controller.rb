@@ -62,7 +62,9 @@ class ActivePollsController < ApplicationController
     
     @active_poll = ActivePoll.find(params[:id])
     if AnsweredQuestion.exists?({:question_id => @active_poll.question.id, :participant_id => user_session.participant})
-      AnsweredQuestion.find_by_question_id_and_participant_id(@active_poll.question.id, user_session.participant).update_attributes(:answer_id => params[:answer])
+      if @active_poll.question.id == params[:question]
+        AnsweredQuestion.find_by_question_id_and_participant_id(@active_poll.question.id, user_session.participant).update_attributes(:answer_id => params[:answer])
+      end
     else
       AnsweredQuestion.new do |a|
         a.question = @active_poll.question
