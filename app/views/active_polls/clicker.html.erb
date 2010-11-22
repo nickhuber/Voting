@@ -1,6 +1,13 @@
-<pre>SESSION ID: <%= session[:session_id] %></pre>
+<pre>
+  SESSION ID: <%= session[:session_id] %>
+</pre>
+
+<% content_for :head do %>
+  <%= javascript_include_tag 'clicker' %>
+<% end %>
 
 <% content_for :title do %>
+  <span id="active_poll_id"><%= @active_poll.id %></span>:
   <%= @active_poll.poll.title %>
 <% end %>
 

@@ -1,4 +1,6 @@
-class ActivePollsController < ApplicationController  
+class ActivePollsController < ApplicationController
+  respond_to :html, :json
+  
   # GET /active_polls/1
   def show
     @active_poll = ActivePoll.find(params[:id])
@@ -46,6 +48,12 @@ class ActivePollsController < ApplicationController
         # Deal with the cheeky user trying to jump ship... (Redirect?)
       end
     end
+    data = [ 
+      @active_poll, 
+      @active_poll.question,
+      @active_poll.question.answers
+    ];
+    respond_with data.to_json
   end
   
   # GET /1/submit/
