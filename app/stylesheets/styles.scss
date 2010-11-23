@@ -159,6 +159,10 @@ td, th {
   margin-right: 0;
 }
 
+#active_poll_id {
+  display: none;
+}
+
 p#notice {
 	color: green;
 	font-family: monospace;
