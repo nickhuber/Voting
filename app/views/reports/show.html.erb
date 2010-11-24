@@ -1,8 +1,17 @@
 <% content_for :head do %>
-<%= javascript_include_tag "/javascripts/jquery.flot.pack.js" %>
-<%= javascript_include_tag "/javascripts/excanvas.pack.js" %>
-<%= javascript_include_tag "report_monitor.js" %>
+  <%= javascript_include_tag "/javascripts/jquery.flot.pack.js" %>
+  <%= javascript_include_tag "/javascripts/excanvas.pack.js" %>
+  <%= javascript_include_tag "report_monitor.js" %>
 <% end %>
+
+<% content_for :title do %>
+  Report for:<%=@report.poll.title%>
+<% end %>
+
+<% content_for :notice do %>
+  <%= notice %>
+<% end %>
+
 <div id="placeholder" style="width:600px;height:300px;">
     Total Participants:<span class="num_of_participants"><%= @report.participants.count %></span></td>
     <table>
@@ -23,14 +32,6 @@
     </table>
 </div>
 
-<% content_for :title do %>
-  Report for:<%=@report.poll.title%>
-<% end %>
-
-<% content_for :notice do %>
-  <%= notice %>
-<% end %>
-
 <h2> User stuff </h2>
 <% @report.participants.each do |p| %>
   User: <%= p.id %><br/>
@@ -49,9 +50,6 @@
 <% @report.poll.questions.each do |q| %>
   <%= q.body %> - <%= AnsweredQuestion.num_correct(q) %> <br/>
 <% end %>
-
-
-<hr/>
 
 <p>
   <b>Date:</b>
@@ -72,9 +70,6 @@
   <b>Average Score:</b>
   To be Implemented
 </p>
-
-
-
 
 
 <%= link_to 'Back', reports_path %>
