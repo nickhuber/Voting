@@ -12,11 +12,12 @@
   <%= notice %>
 <% end %>
 
-<div id="placeholder" style="width:600px;height:300px;">
+<div id="placeholder" style="width:600px;height:300px;display:none">
 </div>
+
 <div id="temp-table">
   <span id="report-id"><%= @report.id %></span>
-  Total Participants:<span class="num_of_participants"><%= @report.participants.count %></span></td>
+  Total Participants:<span class="num_of_participants"><%= @report.participants.count %></span>
   <table>
       <thead> 
           <tr>
@@ -34,6 +35,29 @@
       </tbody>
   </table>
 </div>
+
+<% @report.poll.questions.each do |q| %>
+    <div id="question">
+        Total Participants:
+        <span class="num_of_participants"><%= @report.participants.count %></span>
+        <table>
+            <thead>
+                <tr>
+                    <%q.answers.each do |a| %>
+                        <th><%= a.body %></th>
+                    <%end%>
+                </tr>
+            </thead>
+            <tr>
+                 <%q.answers.each do |a| %>
+                  <td>   1 </td>                            
+                 <%end%>
+            </tr>
+        </table>
+    </div>
+<%end%>
+
+
 
 <p>
   <b>Date:</b>

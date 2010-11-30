@@ -6,7 +6,7 @@ class Question < ActiveRecord::Base
   
   after_update :save_answers
   
-  validates :body, :presence => true
+  validates_presence_of :body, :message => "Question cannot be blank."
   validates_associated :answers
   
   def answer_attributes=(answer_attributes)

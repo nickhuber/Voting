@@ -2,6 +2,11 @@
   <div class="answer">
     <%= a.label :body, "Answer" %>
     <%= a.text_field :body, :index => nil %>
+    
+<!--
+    <%= a.check_box :correct %>
+    <%= a.label :correct %>
+-->
     <% if answer.new_record? %>
       <%= link_to_function "remove", "$(this).parent('.answer').remove()" %>
     <% else %>
