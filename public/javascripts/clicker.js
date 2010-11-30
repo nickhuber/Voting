@@ -50,10 +50,11 @@ function longPollSuccess(question) {
   
   fixAnswerLinks(question_home_id);
   
-  if ($(".current").attr("id") != question_home_id) {
-    //jQT.goTo("#" + question_home_id, 'slide');
-    jQT.goBack(question_home_id);
-  }
+  /*if ($(".current").attr("id") != question_home_id) {
+      //jQT.goTo("#" + question_home_id, 'slide');
+      //jQT.goBack(question_home_id);
+    }*/
+  
   
   // If everything went well, begin another request immediately.
   longPoll();
