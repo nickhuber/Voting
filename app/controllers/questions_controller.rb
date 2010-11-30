@@ -19,12 +19,12 @@ class QuestionsController < ApplicationController
     @question = @poll.questions.build
     
     if params[:num_answers]
-      @num_answers = params[:num_answers].to_i
+      num_answers = params[:num_answers].to_i
     else
-      @num_answers = 4
+      num_answers = 4
     end
     
-    @num_answers.times { @question.answers.build }
+    num_answers.times { @question.answers.build }
   end
 
   # GET polls/1/questions/1/edit
