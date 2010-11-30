@@ -82,6 +82,7 @@ class ActivePollsController < ApplicationController
         flash[:notice]= "Answer submitted."
       end
     end
+    render :layout => 'clicker'
   end
   
   # GET /active_polls/1/end
