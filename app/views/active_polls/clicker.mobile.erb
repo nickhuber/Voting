@@ -17,6 +17,6 @@
 
 <ul id="container_answers" class="rounded">
   <% @active_poll.question.answers.each do |a| %>
-    <li class="arrow"><%= link_to a.body, submit_active_poll_path({:answer => a}) %></li>
+    <li class="arrow"><%= link_to a.body, clicker_submit_path({:answer => a}) %></li>
   <% end %>
 </ul>
