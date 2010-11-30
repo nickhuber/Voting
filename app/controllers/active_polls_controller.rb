@@ -1,9 +1,6 @@
 class ActivePollsController < ApplicationController
   respond_to :html, :json
-  # layout "application", :except => [:clicker]
-  # layout "clicker", :only => [:clicker]
 
-  
   # GET /active_polls/1
   def show
     @active_poll = ActivePoll.find(params[:id])
@@ -51,12 +48,17 @@ class ActivePollsController < ApplicationController
         # Deal with the cheeky user trying to jump ship... (Redirect?)
       end
     end
-    data = [ 
-      @active_poll, 
-      @active_poll.question,
-      @active_poll.question.answers
-    ];
-    respond_with data.to_json
+    respond_to do |format|
+      format.html  { render :layout => 'clicker' }
+      format.json  { 
+                     data = [ 
+                             @active_poll, 
+                             @active_poll.question, 
+                             @active_poll.question.answers 
+                            ];
+                     respond_with data.to_json 
+                   }
+    end
   end
   
   # GET /1/submit/
@@ -81,4 +83,11 @@ class ActivePollsController < ApplicationController
       end
     end
   end
+  
+  # GET /active_polls/1/end
+  def end
+    ActivePoll.find(params[:id]).delete
+    redirect_to :controller => :polls, :action => :index
+  end
+  
 end

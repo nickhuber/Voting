@@ -19,3 +19,7 @@
     <li class="arrow"><%= link_to a.body, clicker_submit_path({:answer => a}) %></li>
   <% end %>
 </ul>
+
+<ul id="next-question" class="rounded">
+  <li class="arrow"><%= link_to "Load new question", clicker_path(@active_poll.id)%></li>
+</ul>
