@@ -17,8 +17,8 @@ var options = {
 var num_of_questions;
 var num_of_participants;
 $(function () {
-    setInterval(fetchData, 10000);
-    var num_of_participants = $(".num_of_participants").html();
+    setInterval(fetchData, 2000);
+/*    var num_of_participants = $(".num_of_participants").html();
     var num_of_questions    = $("tbody tr").size();
     var counter = .5;
     var data = new Array();
@@ -31,7 +31,7 @@ $(function () {
         data[index] = {data: [[index,$('.correct_answer', row).html()]]};
     });
 
-	$.plot($("#placeholder"), data,options);
+	$.plot($("#placeholder"), data,options);*/
       
 });
 function fetchData()
