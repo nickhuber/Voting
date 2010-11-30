@@ -1,6 +1,8 @@
 class ActivePollsController < ApplicationController
   respond_to :html, :json
-#  layout "clicker", :only => [:clicker]
+  # layout "application", :except => [:clicker]
+  # layout "clicker", :only => [:clicker]
+
   
   # GET /active_polls/1
   def show
@@ -58,7 +60,7 @@ class ActivePollsController < ApplicationController
   end
   
   # GET /1/submit/
-  def submit
+  def clicker_submit
     redirect_to :action => :clicker and return if user_session.participant.nil? #check if the user has a session or not
     
     @active_poll = ActivePoll.find(params[:id])
@@ -78,6 +80,5 @@ class ActivePollsController < ApplicationController
         flash[:notice]= "Answer submitted."
       end
     end
-    redirect_to :action => :clicker
   end
 end

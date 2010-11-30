@@ -14,6 +14,7 @@ function longPoll() {
     data: request,
     dataType: 'jsonp',
     error: function(XMLHttpRequest, textStatus, errorThrown) {
+      console.log("ERROR");
       //don't flood the servers on error, wait 10 seconds before retrying
       setTimeout(longPoll, 5 * 1000);
     },

@@ -12,10 +12,10 @@ class Pollquestion < ActiveRecord::Base
   end
   
   def self.next(q)
-    where("weight > ?", q.weight).limit(1).order("weight ASC").first
+    next_question = where("weight < ?", q.weight).order("weight DESC").first 
   end
   
   def self.prev(q)
-    where("weight < ?", q.weight).limit(1).order("weight DESC").first
+    prev_question = where("weight > ?", q.weight).order("weight ASC").first
   end
 end
