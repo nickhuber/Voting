@@ -13,9 +13,8 @@
 <div id="container_question" class="info">
   <h2><%= @active_poll.question.body %></h2>
 </div>
-
 <ul id="container_answers" class="rounded">
   <% @active_poll.question.answers.each do |a| %>
-    <li class="arrow"><%= link_to a.body, clicker_submit_path({:answer => a}) %></li>
+    <li class="arrow"><%= link_to a.body, clicker_submit_path({:anchor => "container_submit", :answer => a}) %></li>
   <% end %>
 </ul>

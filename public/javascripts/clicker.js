@@ -1,5 +1,11 @@
 $(document).ready(function() {
-  setTimeout(longPoll, 2 * 1000);
+  //setTimeout(longPoll, 2 * 1000);
+  $('a').each(function(i, item){
+    $(item).bind("click", function() {
+      console.log(item);
+      $.get($(item).attr("href"));
+    });
+  });
 });
 
 function longPoll() {
