@@ -1,9 +1,9 @@
-<% content_for :head do %>
-  <%= javascript_include_tag 'clicker' %>
+<% content_for :title do %>
+  <span id="active_poll_id"><%= @active_poll.id %></span>
+  <%= @active_poll.poll.title %>
 <% end %>
 
 <% content_for :title do %>
-  <span id="active_poll_id"><%= @active_poll.id %></span>
   <%= @active_poll.poll.title %>
 <% end %>
 
@@ -11,9 +11,10 @@
   <%= notice %>
 <% end %>
 
-<h1>WAIT - mobile</h1>
+<div id="continer_message" class="info">
+  <h2>Thanks, your answer has been submitted!</h2>
+</div>
 
-<div id="next-question">
-  <%= link_to "Load new question", clicker_path(@active_poll.id) %>
-  <small>Once the pollster has changed it</small>
+<div id="reload-question" class="content">
+  <p><%= link_to "Load new question", clicker_path(@active_poll.token) %>  <span>to change your answer or reload the question.</span></p>
 </div>

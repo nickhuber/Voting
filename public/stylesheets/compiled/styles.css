@@ -247,12 +247,13 @@ td, th {
   margin-right: 0;
 }
 
-/* line 162, ../../../app/stylesheets/styles.scss */
-#active_poll_id {
+/* line 163, ../../../app/stylesheets/styles.scss */
+#active_poll_id,
+#active_question_id {
   display: none;
 }
 
-/* line 166, ../../../app/stylesheets/styles.scss */
+/* line 167, ../../../app/stylesheets/styles.scss */
 p#notice {
   color: green;
   font-family: monospace;

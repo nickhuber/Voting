@@ -9,9 +9,9 @@
 <table class="listing-table results">
   <tr>
     <th>Poll Name</th>
+    <th>Polled</th>
     <th>Number of questions</th>
     <th>Number of Participants</th>
-    <th>Average Score</th>
     <th></th>
     <th></th>
   </tr>
@@ -19,9 +19,9 @@
   <% @reports.each do |report| %>
   <tr>
     <td><%= report.poll.title %></td>
+    <td><%= time_ago_in_words(report.created_at) %> ago</td>
     <td><%= report.poll.questions.count %></td>
-    <td>to be implemented</td>
-    <td>to be implemented</td>
+    <td><%= report.participants.count %></td>
    
     <td class="tblcol-link"><%= link_to 'Show', report %></td>
     
