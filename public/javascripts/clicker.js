@@ -1,7 +1,22 @@
-var jQT = new $.jQTouch();
+var jQT;
 $(document).ready(function() {
+  jQT = new $.jQTouch({
+    icon: 'jqtouch.png',
+    statusBar: 'black-translucent',
+    preloadImages: [
+      '../jqtouch/themes/jqt/img/chevron.png',
+      '../jqtouch/themes/jqt/img/rowhead.png',
+      '../jqtouch/themes/jqt/img/back_button_clicked.png',
+      '../jqtouch/themes/jqt/img/button_clicked.png'
+    ],
+    fixedViewport: false
+  });
   setTimeout(longPoll, 2 * 1000);
   fixAnswerLinks();
+  
+  $(document).bind("pageInserted", function(page) {
+    console.log(page);
+  });
 });
 
 function longPoll() {
@@ -50,10 +65,10 @@ function longPollSuccess(question) {
   
   fixAnswerLinks(question_home_id);
   
-  /*if ($(".current").attr("id") != question_home_id) {
-      //jQT.goTo("#" + question_home_id, 'slide');
-      //jQT.goBack(question_home_id);
-    }*/
+  if ($(".current").attr("id") != question_home_id) {
+    //jQT.goTo("#" + question_home_id, 'slide');
+    jQT.goBack();
+  }
   
   
   // If everything went well, begin another request immediately.
