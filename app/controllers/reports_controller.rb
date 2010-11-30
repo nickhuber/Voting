@@ -11,16 +11,28 @@ class ReportsController < ApplicationController
     end
   end
 
+# TO BE IMPLEMENTED
+  #def question
+  #  answers = Array.new
+  #  @report.poll.questions.each_with_index do |q, i|
+  #      answers[i] = Array.new
+  #      q.answers.each do |a|
+  #         answers[i] << a.body
+  #      end
+  #  end 
+  #end
+
   # GET /reports/1
   # GET /reports/1.json
   def show
     @report = Report.find(params[:id])
     correct_questions = Array.new
-    
+    answers = Array.new    
     # get the correct questions into the array
     @report.poll.questions.each do |q|
         correct_questions << AnsweredQuestion.num_correct(q)
     end
+
        data = [ 
         @report.participants.count,
         @report.poll.questions.count,
