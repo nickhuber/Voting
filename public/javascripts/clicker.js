@@ -1,5 +1,7 @@
+var jQT = new $.jQTouch();
 $(document).ready(function() {
   setTimeout(longPoll, 2 * 1000);
+  fixAnswerLinks();
 });
 
 function longPoll() {
@@ -23,11 +25,10 @@ function longPoll() {
 }
 
 function longPollSuccess(question) {
-  var jQT = new $.jQTouch();
   var active_poll = $('#active_poll_id').text();
   var container_question = $("#container_question");
   var container_answers = $("#container_answers");
-  var question_home_id = "container_question";
+  var question_home_id = "pageQuestion";
   
   // Remove old answers.
   $("li", container_answers).each(function(index, item) {
@@ -40,26 +41,26 @@ function longPollSuccess(question) {
   // Create new answers.
   $(question.answers).each(function(index, answer) {
     var dest =  "/" + active_poll + "/submit/" + answer.id;
-    var a = $("<a>").attr("href", dest + "#" + "container_submit")
+    var a = $("<a>").attr("href", dest + "#" + "pageSubmit")
                     .addClass("answer")
                     .text(answer.body);
     var li = $("<li>").attr("class", "arrow").append(a);
     $(container_answers).append(li);
   });
   
-  console.log("FIXANSWERLINKS");
   fixAnswerLinks(question_home_id);
   
   if ($(".current").attr("id") != question_home_id) {
     //jQT.goTo("#" + question_home_id, 'slide');
-    jQT.goBack("#" + question_home_id);
+    jQT.goBack(question_home_id);
   }
   
   // If everything went well, begin another request immediately.
   longPoll();
 }
 
-function fixAnswerLinks(question_home_id) {
+function fixAnswerLinks() {
+  console.log("FIXANSWERLINKS");
   $('a.answer').each(function(i, item) {  
     $(item).bind("click", function() {
       $.get($(item).attr("href"));

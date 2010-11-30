@@ -12,11 +12,11 @@
 
 <span id="active_poll_id"><%= @active_poll.id %></span>
 
-<div class="info">
+<div id="container_question" class="info">
   <h2><%= @active_poll.question.body %></h2>
 </div>
 <ul id="container_answers" class="rounded">
   <% @active_poll.question.answers.each do |a| %>
-    <li class="arrow"><%= link_to a.body, clicker_submit_path({:anchor => "container_submit", :answer_id => a}), {:class => "answer"} %></li>
+    <li class="arrow"><%= link_to a.body, clicker_submit_path({:anchor => "pageSubmit", :answer_id => a}), {:class => "answer"} %></li>
   <% end %>
 </ul>

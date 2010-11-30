@@ -4,34 +4,36 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta id="viewport" name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
   <title>Pollster - <%= yield :title %></title>
-  <!-- <%= stylesheet_link_tag "/jqtouch/jqtouch.min.css","/jqtouch/themes/jqt/theme.min.css" %> -->
+  <!-- <%= stylesheet_link_tag "/jqt/jqtouch.min.css","/jqt/themes/jqt/theme.min.css" %> -->
   <%= stylesheet_link_tag "compiled/styles", :media => "screen" %>
-  <%= stylesheet_link_tag "/jqtouch/jqtouch.css","/jqtouch/themes/jqt/theme.css" %>
+  <%= stylesheet_link_tag "/jqt/jqtouch.css","/jqt/themes/jqt/theme.css" %>
   <%= stylesheet_link_tag "compiled/mobile", :media => "screen" %>
   
   <%= javascript_include_tag :defaults %>
-  <!-- <%= javascript_include_tag "/jqtouch/jqtouch.min.js", "mobile" %> -->
-  <%= javascript_include_tag "/jqtouch/jqtouch.js", "/jqtouch/jqtouch.transitions.js", "mobile" %>
+  <!-- <%= javascript_include_tag "/jqt/jqtouch.min.js", "mobile" %> -->
+  <%= javascript_include_tag "/jqt/jqtouch.js", "mobile" %>
   <%= yield :head %>
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <div id="container_question" class="current">
-    <div class="toolbar">
-      <h1><%= yield :title %></h1>
-      <%= yield :toolbar %>
+  <div id="jqt">
+    <div id="pageQuestion" class="current">
+      <div class="toolbar">
+        <h1><%= yield :title %></h1>
+        <%= yield :toolbar %>
+      </div>
+      <%= yield %>
     </div>
-    <%= yield %>
-  </div>
   
-  <div id="container_submit">
-    <div class="toolbar">
-      <h1><%= yield :title %></h1>
-      <%= yield :toolbar %>
-      <%= link_to "Back", "#back", :class => "back" %>
-    </div>
-    <div class="info">
-      <h1>Thanks, your answer has been submitted!<h1>
+    <div id="pageSubmit">
+      <div class="toolbar">
+        <h1><%= yield :title %></h1>
+        <%= yield :toolbar %>
+        <%= link_to "Back", "#back", :class => "back" %>
+      </div>
+      <div class="info">
+        <h1>Thanks, your answer has been submitted!<h1>
+      </div>
     </div>
   </div>
 </body>
