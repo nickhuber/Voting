@@ -28,8 +28,12 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
     correct_questions = Array.new
     # get the correct questions into the array
-    @report.poll.questions.each do |q|
-        correct_questions << AnsweredQuestion.num_correct(q)
+    if(@report.participants.count == 0)
+        correct_questions << -1
+    else
+        @report.poll.questions.each do |q|
+            correct_questions << AnsweredQuestion.num_correct(q)
+        end
     end
        data = [ 
         @report.participants.count,

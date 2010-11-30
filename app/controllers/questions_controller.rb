@@ -61,7 +61,7 @@ class QuestionsController < ApplicationController
     @poll = Poll.find(params[:poll_id])
     @question = Question.find(params[:q_id])
     @poll.questions << @question
-    respond_with @poll, @questionjquery ho to unhide
+    respond_with @poll, @questionjquery
   end
   
   # PUT polls/1/questions/1/remove
