@@ -16,7 +16,7 @@
 </div>
 
 <div id="temp-table">
-  <span id="report-id"><%= @report.id %></span>
+  <span id="report-id">Report id:<%= @report.id %></span><br/>
   Total Participants:<span class="num_of_participants"><%= @report.participants.count %></span>
   <table>
       <thead> 
@@ -51,7 +51,7 @@
             </thead>
             <tr>
                  <% q.answers.each do |a| %>
-                  <td>1<!-- num correct answers --></td>                            
+                  <td><%= a.picked(@report) %> </td>                            
                  <%end%>
             </tr>
         </table>
