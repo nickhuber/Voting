@@ -30,4 +30,6 @@ Voting::Application.routes.draw do
   match 'polls/:poll_id/questions/:q_id/add', :to => 'questions#add_to_poll', :as => :add_to_poll
   match 'polls/:poll_id/questions/:q_id/remove', :to => 'questions#remove_from_poll', :as => :remove_from_poll
   
+  match 'active_polls/:id/end', :to => 'active_polls#end', :as => :end_poll
+  
 end
