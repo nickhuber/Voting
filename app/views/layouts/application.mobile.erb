@@ -10,8 +10,8 @@
   <%= stylesheet_link_tag "compiled/mobile", :media => "screen" %>
   
   <%= javascript_include_tag :defaults %>
-  <!-- <%= javascript_include_tag "/jqt/jqtouch.min.js", "mobile" %> -->
-  <%= javascript_include_tag "/jqt/jqtouch.js", "mobile" %>
+  <!-- <%= javascript_include_tag "/jqt/jqtouch.min.js" %> -->
+  <%= javascript_include_tag "/jqt/jqtouch.js" %>
   <%= yield :head %>
   <%= csrf_meta_tag %>
 </head>
@@ -33,6 +33,10 @@
       </div>
       <div class="info">
         <h1>Thanks, your answer has been submitted!<h1>
+      </div>
+      <div class="content">
+        <p>To go back and change your submission, push the back button above.</p>
+        <p>This page will update as soon as the next question is posted.</p>
       </div>
     </div>
   </div>

@@ -1,5 +1,15 @@
 /* line 1, ../../../app/stylesheets/mobile.scss */
 html, body {
-  padding: 0;
-  margin: 0;
+  /*padding: 0;
+  margin: 0;*/
+}
+
+/* line 6, ../../../app/stylesheets/mobile.scss */
+.content {
+  text-align: center;
+}
+
+/* line 10, ../../../app/stylesheets/mobile.scss */
+.content p {
+  margin-top: 10px;
 }
