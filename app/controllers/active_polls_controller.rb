@@ -1,6 +1,8 @@
 class ActivePollsController < ApplicationController
   respond_to :html, :json
-#  layout "clicker", :only => [:clicker]
+  # layout "application", :except => [:clicker]
+  # layout "clicker", :only => [:clicker]
+
   
   # GET /active_polls/1
   def show
