@@ -51,7 +51,7 @@
             </thead>
             <tr>
                  <% q.answers.each do |a| %>
-                  <td><%= a.picked(@report) %> </td>                            
+                  <td><%= a.picked(@report)%> Participant(s) picked this answer</td>                            
                  <%end%>
             </tr>
         </table>
@@ -63,20 +63,4 @@
   <%= @report.poll.created_at %>(Format Later)
 </p>
 
-<p>
-  <b>Number of Questions:</b>
-  <%= @report.poll.questions.count %>
-</p>
-
-<p>
-  <b>Number of Participants:</b>
-     <%= @report.participants.count%>
-</p>
-
-<p>
-  <b>Average Score:</b>
-  To be Implemented
-</p>
-
-
-<%= link_to 'Back', reports_path %>
+<%= link_to 'View all reports', reports_path %>
