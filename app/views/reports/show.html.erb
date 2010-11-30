@@ -36,11 +36,16 @@
   </table>
 </div>
 
+Total Participants:
+<span class="num_of_participants"><%= @report.participants.count %></span>
+<hr/>
+
 <% @report.poll.questions.each_with_index do |q, i| %>
     <div id="placeholder<%= i %>"></div>
     <div id="question">
-        Total Participants:
-        <span class="num_of_participants"><%= @report.participants.count %></span>
+        
+        
+        <div class="question_name"><%= q.body %></div>
         <table>
             <thead>
                 <tr>
