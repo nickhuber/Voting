@@ -35,8 +35,10 @@ class QuestionsController < ApplicationController
   def create
     @poll = Poll.find(params[:poll_id])
     @question = @poll.questions.create(params[:question])
-    
+    highest_weight = Pollquestion.find_all_by_poll_id(params[:poll_id]).max { |a, b| a.weight <=> b.weight }.weight + 1
+
     if @question.save
+      Pollquestion.find_by_poll_id_and_question_id(@poll.id, @question.id).update_attributes(:weight => highest_weight)
       redirect_to(@poll, :notice => 'Question was successfully created.')
     else
       render :action => "new"
