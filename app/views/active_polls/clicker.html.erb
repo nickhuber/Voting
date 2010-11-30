@@ -3,12 +3,14 @@
 <% end %>
 
 <% content_for :title do %>
-  <%= @active_poll.id %> <%= @active_poll.poll.title %>
+  <%= @active_poll.poll.title %>
 <% end %>
 
 <% content_for :notice do %>
   <%= notice %>
 <% end %>
+
+<span id="active_poll_id"><%= @active_poll.id %></span>
 
 <div id="container_question" >
   <h2><%= @active_poll.question.body %></h2>

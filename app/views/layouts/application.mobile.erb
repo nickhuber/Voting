@@ -16,7 +16,7 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <div class="current">
+  <div id="container_question" class="current">
     <div class="toolbar">
       <h1><%= yield :title %></h1>
       <%= yield :toolbar %>
@@ -24,11 +24,15 @@
     <%= yield %>
   </div>
   
-  <div id="container_submit" class="info">
-    <h2>Thanks, your answer has been submitted!</ht>
-    <ul id="next-question" class="rounded">
-      <li class="arrow"><%= link_to "Load new question", clicker_path(@active_poll.id)%></li>
-    </ul>
+  <div id="container_submit">
+    <div class="toolbar">
+      <h1><%= yield :title %></h1>
+      <%= yield :toolbar %>
+      <%= link_to "Back", "#back", :class => "back" %>
+    </div>
+    <div class="info">
+      <h1>Thanks, your answer has been submitted!<h1>
+    </div>
   </div>
 </body>
 </html>
