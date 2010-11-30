@@ -3,8 +3,7 @@
 <% end %>
 
 <% content_for :title do %>
-  <span id="active_poll_id"><%= @active_poll.id %></span>
-  <%= @active_poll.poll.title %>
+  <%= @active_poll.id %> <%= @active_poll.poll.title %>
 <% end %>
 
 <% content_for :notice do %>
