@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
   load_and_authorize_resource
-  
+  respond_to :html, :json
+
   # GET /reports
   # GET /reports.xml
   def index
@@ -11,12 +12,20 @@ class ReportsController < ApplicationController
   end
 
   # GET /reports/1
-  # GET /reports/1.xml
+  # GET /reports/1.json
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @report }
+    @report = Report.find(params[:id])
+    correct_questions = Array.new
+    
+    # get the correct questions into the array
+    @report.poll.questions.each do |q|
+        correct_questions << AnsweredQuestion.num_correct(q)
     end
+       data = [ 
+        @report.participants.count,
+        correct_questions
+       ];
+       respond_with data.to_json
   end
 
   # GET /reports/new
@@ -56,6 +65,8 @@ class ReportsController < ApplicationController
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @report.errors, :status => :unprocessable_entity }
+       
+    
       end
     end
   end
