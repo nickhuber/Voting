@@ -8,12 +8,30 @@ $(function () {
     var bar_counter;
     var index = 0;
     var answer;
-    var newData = [];
+    var newData = [{data: [[0,.5], [1,1]]}];
+    var options = { 
+        bars:{show:true },
+        xaxis: {
+	        max : num_of_questions,
+        /*    ticks: [ 
+                
+            ],		    */   
+		},
+        yaxis: {
+            min : 0,
+            max : num_of_participants,
+        },
+		legend: {
+		    show: false
+		}
+    }
+    
+
     $("tbody tr").each(function(index,row){
-        data[index] = $('.correct_answer', row).html();
-        //data += [[bar_counter++,row.find("td")[1].html()]];
+        data[index] = {data: [[index,$('.correct_answer', row).html()]]};
     });
-console.log(data);
+    
+    console.log(data);
      //$.ajax({
                 // usually, we'll just call the same URL, a script
                 // connected to a database, but in this case we only
@@ -33,29 +51,7 @@ console.log(data);
                 
                 $.plot($("#placeholder"), data, options);
     }
-    var count = 0;
-    while(answer < num_of_questions) {
-        newData[count++] = {                
-            data: [[counter++,data[answer++]]],    
-            // data: [[bar_counter++,<%= AnsweredQuestion.num_correct(q) %>]],    
-            bars: { show: true}
-        };
-    }
-	$.plot($("#placeholder"), newData, 
-    {
-        xaxis: {
-	        max : num_of_questions,
-        /*    ticks: [ 
-                
-            ],		    */   
-		},
-        yaxis: {
-            min : 0,
-            max : num_of_participants,
-        },
-		legend: {
-		    show: false
-		}
-
-	});
+    
+	$.plot($("#placeholder"), data,options);
+    
 });
