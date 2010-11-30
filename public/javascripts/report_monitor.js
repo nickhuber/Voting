@@ -17,7 +17,9 @@ var options = {
 var num_of_questions;
 var num_of_participants;
 $(function () {
+  $("#temp-table").hide();
     setInterval(fetchData, 2000);
+    fetchData();
 /*    var num_of_participants = $(".num_of_participants").html();
     var num_of_questions    = $("tbody tr").size();
     var counter = .5;
@@ -43,7 +45,7 @@ function fetchData()
                 // connected to a database, but in this case we only
                 // have static example files so we need to modify the
                 // URL
-                url: "5",
+                url: $("#report-id").value,
                 method: 'GET',
                 dataType: 'json',
                 success: onDataReceived,

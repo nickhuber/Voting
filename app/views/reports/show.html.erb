@@ -13,43 +13,27 @@
 <% end %>
 
 <div id="placeholder" style="width:600px;height:300px;">
-    Total Participants:<span class="num_of_participants"><%= @report.participants.count %></span></td>
-    <table>
-        <thead> 
-            <tr>
-                <th>Question Number</th>
-                <th>Number of Correct Answers</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @report.poll.questions.each do |q| %>  
-                <tr>    
-                    <td><%= q.body %></td>
-                    <td class="correct_answer"><%= AnsweredQuestion.num_correct(q).to_s %></td>
-                </tr>   
-            <% end %>
-        </tbody>
-    </table>
 </div>
-
-<h2> User stuff </h2>
-<% @report.participants.each do |p| %>
-  User: <%= p.id %><br/>
-  <% p.answered_questions.each do |a| %>
-
-    Question: <%= a.question.body %>
-    Answer: <%= a.answer.body %>
-
-    Question: <%= a.question.body %> <br/>
-    Answer: <%= a.answer.body %><br/>
-
-  <% end %>
-<% end %>
-
-<h2> Question stuff </h2>
-<% @report.poll.questions.each do |q| %>
-  <%= q.body %> - <%= AnsweredQuestion.num_correct(q) %> <br/>
-<% end %>
+<div id="temp-table">
+  <span id="report-id"><%= @report.id %></span>
+  Total Participants:<span class="num_of_participants"><%= @report.participants.count %></span></td>
+  <table>
+      <thead> 
+          <tr>
+              <th>Question Number</th>
+              <th>Number of Correct Answers</th>
+          </tr>
+      </thead>
+      <tbody>
+          <% @report.poll.questions.each do |q| %>  
+              <tr>    
+                  <td><%= q.body %></td>
+                  <td class="correct_answer"><%= AnsweredQuestion.num_correct(q).to_s %></td>
+              </tr>   
+          <% end %>
+      </tbody>
+  </table>
+</div>
 
 <p>
   <b>Date:</b>
