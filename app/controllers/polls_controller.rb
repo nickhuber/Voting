@@ -55,6 +55,8 @@ class PollsController < ApplicationController
   # GET polls/1/present
   # TODO fix failing on not having any questions
   def present
+    redirect_to(@poll, :notice => "Must have at least one queston") and return if @poll.questions.count == 0
+    
     @active_poll = ActivePoll.new do |a|
       a.poll_id = @poll.id
       a.question_id = @poll.questions.first.id
