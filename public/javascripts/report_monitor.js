@@ -36,7 +36,7 @@ $(function () {
 });
 function fetchData()
 {
-  //$.ajaxError(error);
+  //$.ajaxError(error);num_of_participants
     
     $.ajax({
                 // usually, we'll just call the same URL, a script
@@ -46,7 +46,6 @@ function fetchData()
                 url: "5",
                 method: 'GET',
                 dataType: 'json',
-               
                 success: onDataReceived,
                 error: test 
      });
@@ -59,8 +58,19 @@ function fetchData()
     {
                 // we get all the data in one go, if we only got partial
                 // data, we could merge it with what we already got
-                data = [ data ];
-                console.log(data);
-                $.plot($("#placeholder"), data, options);
+                var num_of_participants = data[0];   
+                var num_of_questions    = data[1].length
+                var result = new Array();  
+                var count = 0;        
+                options.yaxis.max = num_of_participants;
+                options.xaxis.max = num_of_questions;
+                //result = data[1];
+                while(count < data[1].length)
+                {
+                    result[count] = {data: [[count,data[1][count]]]};
+                    count++;
+                }
+                console.log(result);
+                $.plot($("#placeholder"), result, options);
     }
 };

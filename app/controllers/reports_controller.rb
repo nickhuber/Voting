@@ -16,12 +16,12 @@ class ReportsController < ApplicationController
   def show
     @report = Report.find(params[:id])
     correct_questions = Array.new
+    
     # get the correct questions into the array
     @report.poll.questions.each do |q|
         correct_questions << AnsweredQuestion.num_correct(q)
     end
        data = [ 
-        @report,
         @report.participants.count,
         correct_questions
        ];
