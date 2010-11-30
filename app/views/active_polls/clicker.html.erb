@@ -19,7 +19,7 @@
 <div id="answers">
   <ul id="container_answers" >
     <% @active_poll.question.answers.each do |a| %>
-      <li class="arrow"><%= link_to a.body, clicker_submit_path({:answer => a}) %></li>
+      <li class="arrow"><%= link_to a.body, clicker_submit_path({:anchor => "pageSubmit", :answer_id => a}) %></li>
     <% end %>
   </ul>
 </div>
