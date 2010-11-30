@@ -36,28 +36,27 @@
   </table>
 </div>
 
-<% @report.poll.questions.each do |q| %>
+<% @report.poll.questions.each_with_index do |q, i| %>
+    <div id="placeholder<%= i %>"></div>
     <div id="question">
         Total Participants:
         <span class="num_of_participants"><%= @report.participants.count %></span>
         <table>
             <thead>
                 <tr>
-                    <%q.answers.each do |a| %>
+                    <% q.answers.each do |a| %>
                         <th><%= a.body %></th>
-                    <%end%>
+                    <% end %>
                 </tr>
             </thead>
             <tr>
-                 <%q.answers.each do |a| %>
-                  <td>   1 </td>                            
+                 <% q.answers.each do |a| %>
+                  <td>1<!-- num correct answers --></td>                            
                  <%end%>
             </tr>
         </table>
     </div>
-<%end%>
-
-
+<% end %>
 
 <p>
   <b>Date:</b>
