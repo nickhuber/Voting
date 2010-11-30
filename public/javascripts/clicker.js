@@ -1,18 +1,7 @@
-var jQT;
 $(document).ready(function() {
-  jQT = new $.jQTouch({
-    icon: 'jqtouch.png',
-    statusBar: 'black-translucent',
-    preloadImages: [
-      '../jqtouch/themes/jqt/img/chevron.png',
-      '../jqtouch/themes/jqt/img/rowhead.png',
-      '../jqtouch/themes/jqt/img/back_button_clicked.png',
-      '../jqtouch/themes/jqt/img/button_clicked.png'
-    ],
-    fixedViewport: false
-  });
   setTimeout(longPoll, 2 * 1000);
-  fixAnswerLinks();
+
+  $('body').trigger('FixAnswerLinks');
   
   $(document).bind("pageInserted", function(page) {
     console.log(page);
@@ -63,23 +52,14 @@ function longPollSuccess(question) {
     $(container_answers).append(li);
   });
   
-  fixAnswerLinks(question_home_id);
+  $('body').trigger('FixAnswerLinks');
   
   if ($(".current").attr("id") != question_home_id) {
-    //jQT.goTo("#" + question_home_id, 'slide');
-    jQT.goBack();
+    // Inform listening parties (mobile view) 
+    // that question has updated.
+    $('body').trigger('LongPollSuccess');
   }
-  
   
   // If everything went well, begin another request immediately.
   longPoll();
-}
-
-function fixAnswerLinks() {
-  console.log("FIXANSWERLINKS");
-  $('a.answer').each(function(i, item) {  
-    $(item).bind("click", function() {
-      $.get($(item).attr("href"));
-    });
-  });
 }

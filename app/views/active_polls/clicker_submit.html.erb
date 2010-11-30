@@ -1,9 +1,4 @@
-<% content_for :head do %>
-  <%= javascript_include_tag 'clicker' %>
-<% end %>
-
 <% content_for :title do %>
-  <span id="active_poll_id"><%= @active_poll.id %></span>
   <%= @active_poll.poll.title %>
 <% end %>
 
@@ -11,7 +6,7 @@
   <%= notice %>
 <% end %>
 
-<h1>Thanks, you answer has been submitted!</h1>
+<%= render :partial => "clicker_submit_message" %>
 
 <div id="next-question">
   <%= link_to "Load new question", clicker_path(@active_poll.token)%>

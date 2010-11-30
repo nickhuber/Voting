@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <%= javascript_include_tag 'clicker' %>
+  <%= javascript_include_tag 'browser', 'clicker' %>
 <% end %>
 
 <% content_for :title do %>
@@ -10,21 +10,24 @@
   <%= notice %>
 <% end %>
 
-<span id="active_poll_id"><%= @active_poll.id %></span>
+<div id="container_question">
+  <span id="active_poll_id"><%= @active_poll.id %></span>
 
-<div id="container_question" >
-  <h2><%= @active_poll.question.body %></h2>
+  <div id="container_question" >
+    <h2><%= @active_poll.question.body %></h2>
+  </div>
+
+  <div id="answers">
+    <ul id="container_answers" >
+      <% @active_poll.question.answers.each do |a| %>
+        <li class="arrow">
+          <%= link_to a.body, clicker_submit_path({:anchor => "pageSubmit", :answer_id => a}), {:class => "answer"} %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
 
-<div id="answers">
-  <ul id="container_answers" >
-    <% @active_poll.question.answers.each do |a| %>
-      <li class="arrow"><%= link_to a.body, clicker_submit_path({:anchor => "pageSubmit", :answer_id => a}) %></li>
-    <% end %>
-  </ul>
-</div>
-
-<div id="next-question">
-  <%= link_to "Load new question", clicker_path(@active_poll.token) %>
-  <small>Once the pollster has changed it</small>
+<div id="reload-question">
+  <%= link_to "Click here", clicker_path(@active_poll.id) %> <span id="reload-text">to reload the question.</span>
 </div>
