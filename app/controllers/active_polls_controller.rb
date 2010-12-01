@@ -83,7 +83,9 @@ class ActivePollsController < ApplicationController
         flash[:notice]= "Answer submitted."
       end
     end
-    render :layout => 'clicker'
+    respond_to do |format|
+      format.html  { render :layout => 'clicker' }
+    end
   end
   
   # GET /active_polls/1/end
