@@ -22,3 +22,7 @@
     </li>
   <% end %>
 </ul>
+
+<div id="reload-question" class="content">
+  <p><%= link_to "Click here", clicker_path(@active_poll.token) %>  <span>to reload the question.</span></p>
+</div>
