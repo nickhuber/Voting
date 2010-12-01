@@ -56,15 +56,15 @@ function fetchData()
         // we get all the data in one go, if we only got partial
         // data, we could merge it with what we already got
         var num_of_participants = data[0];   
-        var num_of_questions    = data[1].length
+        var num_of_questions    = data[2].length
         var result = new Array();  
         var count = 0;        
         options.yaxis.max = num_of_participants;
         options.xaxis.max = num_of_questions;
-        //result = data[1];
-        while(count < data[1].length)
+        //result = data[0];
+        while(count < data[2].length)
         {
-            result[count] = {data: [[count,data[1][count]]]};
+            result[count] = {data: [[count,data[2][count]]]};
             count++;
         }
         console.log(result);

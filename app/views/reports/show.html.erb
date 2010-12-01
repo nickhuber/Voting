@@ -55,9 +55,9 @@ Total Participants:
                 </tr>
             </thead>
             <tr>
-                 <% q.answers.each do |a| %>
-                  <td><%= a.picked(@report)%> Participant(s) picked this answer</td>                            
-                 <%end%>
+                <% q.answers.each do |a| %>
+                    <td><%= a.picked(@report)%> Participant(s) picked this answer</td>                            
+                <%end%>
             </tr>
         </table>
     </div>
