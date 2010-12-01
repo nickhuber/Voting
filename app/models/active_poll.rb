@@ -4,7 +4,7 @@ class ActivePoll < ActiveRecord::Base
   belongs_to :report
   belongs_to :user_session
   
-  before_save :generate_token
+  before_create :generate_token
   
   def generate_token    
     o = [('a'..'z')].map{|i| i.to_a}.flatten;  
