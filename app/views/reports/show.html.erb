@@ -57,15 +57,14 @@ Total Participants:
             <tr>
                 <% q.answers.each do |a| %>
                     <td><%= a.picked(@report)%> Participant(s) picked this answer</td>                            
-                <%end%>
+                <% end %>
             </tr>
         </table>
     </div>
 <% end %>
 
 <p>
-  <b>Date:</b>
-  <%= @report.poll.created_at %>(Format Later)
+  Polled <%= time_ago_in_words(@report.poll.created_at) %> ago.
 </p>
 
 <%= link_to 'View all reports', reports_path %>
