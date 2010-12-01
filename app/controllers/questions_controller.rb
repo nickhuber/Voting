@@ -18,9 +18,12 @@ class QuestionsController < ApplicationController
     @poll = Poll.find(params[:poll_id])
     @question = @poll.questions.build
     
-    num_answers = 4
+    @num_answers ||= 4
     
-    num_answers.times { @question.answers.build }
+    @num_answers.times { |i|
+      @question.answers.build
+      @question.answers[i].id = i
+    }
   end
 
   # GET polls/1/questions/1/edit
@@ -31,7 +34,13 @@ class QuestionsController < ApplicationController
   def create
     @poll = Poll.find(params[:poll_id])
     @question = @poll.questions.create(params[:question])
-
+    
+    params[:correct].each_with_index do |q, i|
+      if q.last == "1"
+        @question.answers[i].correct = true
+      end
+    end
+    
     if @question.save
       highest_weight = Pollquestion.find_all_by_poll_id(params[:poll_id]).max { |a, b| a.weight <=> b.weight }.weight + 1
       Pollquestion.find_by_poll_id_and_question_id(@poll.id, @question.id).update_attributes(:weight => highest_weight)
