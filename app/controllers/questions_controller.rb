@@ -64,6 +64,8 @@ class QuestionsController < ApplicationController
       params[:correct].each_with_index do |q, i|
         if q.last == "1"
           question.answers[i].correct = true
+        elsif q.last == "0"
+          question.answers[i].correct = false
         end
         question.save
       end
