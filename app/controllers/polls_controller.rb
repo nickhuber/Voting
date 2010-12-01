@@ -4,7 +4,8 @@ class PollsController < ApplicationController
   
   # GET /polls
   def index
-    @active_polls = ActivePoll.all
+    # This comparison operator is INSANE!
+    @active_polls = ActivePoll.all.sort { |a, b| b.report.created_at <=> a.report.created_at }
   end
 
   # GET /polls/1
