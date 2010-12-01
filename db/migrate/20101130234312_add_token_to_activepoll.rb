@@ -6,6 +6,6 @@ class AddTokenToActivepoll < ActiveRecord::Migration
   end
 
   def self.down
-      remove_column :active_polls, :token
+    remove_column :active_polls, :token
   end
 end

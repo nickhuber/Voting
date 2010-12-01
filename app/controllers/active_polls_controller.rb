@@ -78,6 +78,7 @@ class ActivePollsController < ApplicationController
         a.question = @active_poll.question
         a.answer = Answer.find(params[:answer_id])
         a.participant_id = user_session.participant
+        a.report_id = @active_poll.report_id
         a.save
         flash[:notice]= "Answer submitted."
       end
