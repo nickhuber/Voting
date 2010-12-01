@@ -17,7 +17,6 @@
 </div>
 
 <div id="temp-table">
-
   <span id="report-id">Report id:<%= @report.id %></span>
   Total Participants:<span class="num_of_participants"><%= @report.participants.count %></span>
   <table>
@@ -43,25 +42,25 @@ Total Participants:
 <hr/>
 
 <% @report.poll.questions.each_with_index do |q, i| %>
-  <div class="question">
+<div class="report-question">
 
-    <div class="question_name"><%= q.body %></div>
-    
-    <table>
-      <thead>
-        <th>Answer</th>
-        <th>Number of times answered</th>
-      </thead>
+  <div class="question_name"><%= q.body %></div>
+  
+  <table>
+    <thead>
+      <th>Answer</th>
+      <th>Number of times answered</th>
+    </thead>
 
-      <% q.answers.each do |a| %>
-        <tr>
-          <td><%= a.body %></td>
-          <td><span class="value"> <%= a.picked(@report) %> </span></td>
-        </tr>
-      <% end %>
+    <% q.answers.each do |a| %>
+      <tr>
+        <td><%= a.body %></td>
+        <td><span class="value"> <%= a.picked(@report) %> </span></td>
+      </tr>
+    <% end %>
 
-   </table>
-  </div>
+ </table>
+</div>
 <% end %>
 
 <p>

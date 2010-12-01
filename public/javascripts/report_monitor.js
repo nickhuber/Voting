@@ -97,7 +97,7 @@ function fetchData()
     function updateTables(result)
     {
         var index = 0;
-        $(".question").each(function(idx,el){
+        $(".report-question").each(function(idx,el){
            
             $(".value",el).each(function(ex, el){
                 $(el).text(result.answers_picked[index++]);
