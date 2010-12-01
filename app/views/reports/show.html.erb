@@ -1,7 +1,8 @@
 <% content_for :head do %>
-  <%= javascript_include_tag "/javascripts/jquery.flot.pack.js" %>
+  <!--<%= javascript_include_tag "/javascripts/jquery.flot.pack.js" %>-->
   <%= javascript_include_tag "/javascripts/excanvas.pack.js" %>
   <%= javascript_include_tag "report_monitor.js" %>
+  <%= javascript_include_tag "jquery.flot.js" %>
 <% end %>
 
 <% content_for :title do %>
@@ -16,6 +17,7 @@
 </div>
 
 <div id="temp-table">
+
   <span id="report-id">Report id:<%= @report.id %></span><br/>
   Total Participants:<span class="num_of_participants"><%= @report.participants.count %></span>
   <table>
@@ -41,26 +43,26 @@ Total Participants:
 <hr/>
 
 <% @report.poll.questions.each_with_index do |q, i| %>
-    <div id="placeholder<%= i %>"></div>
+  <div id="placeholder<%= i %>"></div>
     <div id="question">
-        
-        
-        <div class="question_name"><%= q.body %></div>
-        <table>
-            <thead>
-                <tr>
-                    <% q.answers.each do |a| %>
-                        <th><%= a.body %></th>
-                    <% end %>
-                </tr>
-            </thead>
-            <tr>
-                <% q.answers.each do |a| %>
-                    <td><%= a.picked(@report)%> Participant(s) picked this answer</td>                            
-                <%end%>
-            </tr>
-        </table>
-    </div>
+
+
+    <div class="question_name"><%= q.body %></div>
+    <table>
+      <thead>
+        <th>Answer</th>
+        <th>Number of times answered</th>
+      </thead>
+
+      <% q.answers.each do |a| %>
+      <tr>
+        <td><%= a.body %></td>
+        <td><%= a.picked(@report)%></td>
+      </tr>
+      <% end %>
+
+    </table>
+  </div>
 <% end %>
 
 <p>

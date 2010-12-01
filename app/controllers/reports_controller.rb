@@ -27,20 +27,30 @@ class ReportsController < ApplicationController
   def show
     @report = Report.find(params[:id])
     correct_questions = Array.new
+    question_labels = Array.new
+    answers_picked = Array.new
     # get the correct questions into the array
     if(@report.participants.count == 0)
         correct_questions << -1
     else
         @report.poll.questions.each do |q|
             correct_questions << AnsweredQuestion.num_correct(q)
+            question_labels << q.body
         end
     end
-       data = [ 
-        @report.participants.count,
-        @report.poll.questions.count,
-        correct_questions
-       ];
-       respond_with data.to_json
+    @report.poll.questions.each do |q|
+        q.answers.each do |a|
+            answers_picked << a.picked(@report)
+        end 
+    end
+    data = [{ 
+      :p_count => @report.participants.count,
+      :q_count => @report.poll.questions.count,
+      :correct_questions => correct_questions,
+      :q_labels => question_labels,
+      :answers_picked => answers_picked
+    }];
+   respond_with data.to_json
   end
 
   # GET /reports/new

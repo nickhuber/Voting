@@ -2,27 +2,46 @@ var options = {
         bars:{show:true },
         xaxis: {
 	        max : num_of_questions,
-            tickSize: 1
-      
+            tickSize: 1,
+            tickAlign: "left"
 		},
         yaxis: {
             min : 0,
             max : num_of_participants,
             tickSize: 1
+            
         },
 		legend: {
 		    show: false
-		}
+		},
+        hooks: {
+            processOptions: processOptions        
+        }
     }
+
+var graph;
 var num_of_questions;
 var num_of_participants;
 
-$(function () {
+function processOptions(plot, options) {
+    var labels = new Array();
+    console.log(options);    
+    $(".question_name").each(function(i, item) {
+        labels[i] = new Array();
+        labels[i].push(i);
+        labels[i].push($(item).text());
+    });
+
+    options.xaxis.ticks = labels;
+}
+
+$(document).ready(function(){
     $("#temp-table").hide();
     $("#placeholder").show();
-    setInterval(fetchData, 4000);
     fetchData();
-/*    var num_of_participants = $(".num_of_participants").html();
+    //setInterval(fetchData, 4000);
+
+    var num_of_participants = $(".num_of_participants").html();
     var num_of_questions    = $("tbody tr").size();
     var counter = .5;
     var data = new Array();
@@ -31,11 +50,19 @@ $(function () {
     var answer;
    // var newData = [{data: [[0,.5], [1,1]]}];
     
-    $("tbody tr").each(function(index,row){
-        data[index] = {data: [[index,$('.correct_answer', row).html()]]};
+    $(".correct_answer").each(function(index,row){
+        data[index] = {data: [[index,$(row).html()]]};
     });
 
-	$.plot($("#placeholder"), data,options);*/
+	graph = new $.plot($("#placeholder"), data, options, 0);
+    console.log(graph);
+   $('.tickLabel').each(function(idx, el){          
+        //$(el).css('left', 100);
+        //console.log($(el));            
+        //var c = $(el);
+        //var value = c.parent().css('left');
+        // c.parent().css('right',parseInt(value)+1000+'px');
+    });
       
 });
 function fetchData()
@@ -52,28 +79,23 @@ function fetchData()
         
      });
    
-    function onDataReceived(data, textStatus, XMLHttpRequest)
-    {
-        // we get all the data in one go, if we only got partial
-        // data, we could merge it with what we already got
-        var num_of_participants = data[0];   
-        var num_of_questions    = data[2].length
-        var result = new Array();  
-        var count = 0;        
-        options.yaxis.max = num_of_participants;
-        options.xaxis.max = num_of_questions;
-        //result = data[0];
-        if(data[2][0] == -1)
-        {
+    function onDataReceived(data, textStatus, XMLHttpRequest) {
+        console.log(data);
+        var result = new Array();
+        result = data.shift();
+
+        if(result.correct_questions[0] == -1) {
             $("#placeholder").hide();
             $("#temp-table").show();
         }
-        while(count < data[2].length)
-        {
-            result[count] = {data: [[count,data[2][count]]]};
-            count++;
-        }
-        console.log(data[2].length);
-        $.plot($("#placeholder"), result, options);
+
+        updateTables(result);
+        
+        graph.setData(result.correct_questions);
+        graph.draw();
     }
+    function updateTables(result)
+    {
+        console.log(result.correct_questions);
+    }   
 };
