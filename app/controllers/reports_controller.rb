@@ -5,6 +5,7 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.xml
   def index
+    @reports.sort! { | a, b | b.created_at <=> a.created_at }
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @reports }
