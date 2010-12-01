@@ -12,3 +12,8 @@
 <% end %>
 
 <h1>WAIT - mobile</h1>
+
+<div id="next-question">
+  <%= link_to "Load new question", clicker_path(@active_poll.id) %>
+  <small>Once the pollster has changed it</small>
+</div>
