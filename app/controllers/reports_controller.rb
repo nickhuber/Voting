@@ -24,8 +24,8 @@ class ReportsController < ApplicationController
     else
         sorted = @report.poll.pollquestions.sort { |a, b| a.weight <=> b.weight }
         sorted.each do |q|
-            puts q.question.body
-            correct_questions << AnsweredQuestion.num_correct(q.question)
+            if report.
+            correct_questions << AnsweredQuestion.num_correct(q.question, @report)
             question_labels << q.question.body
         end
     end
