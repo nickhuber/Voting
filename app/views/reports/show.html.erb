@@ -46,42 +46,25 @@ Total Participants:
   <div id="placeholder<%= i %>"></div>
     <div id="question">
 
-
-
-    <div class="question_name"><%= q.body %></div>
-    <table>
-      <thead>
-        <th>Answer</th>
-        <th>Number of times answered</th>
-      </thead>
-
-      <% q.answers.each do |a| %>
-      <tr>
-        <td><%= a.body %></td>
-        <td><%= a.picked(@report)%></td>
-      </tr>
-      <% end %>
-
-    </table>
-  </div>
-    
-    <div class="question_name"><%= q.body %></div>
-    <table>
+      <div class="question_name"><%= q.body %></div>
+      
+      <table>
         <thead>
-            <tr>
-                <% q.answers.each do |a| %>
-                    <th><%= a.body %></th>
-                <% end %>
-            </tr>
+          <th>Answer</th>
+          <th>Number of times answered</th>
         </thead>
-        <tr>
-            <% q.answers.each do |a| %>
-              <td><%= a.picked(@report)%> Participant(s) picked this answer
-              </td>                            
-            <% end %>
-        </tr>
-    </table>
-  </div>
+
+        <% q.answers.each do |a| %>
+          <tr>
+            <td><%= a.body %></td>
+            <td><%= a.picked(@report)%></td>
+          </tr>
+        <% end %>
+
+     </table>
+    </div>
+    
+   
 
 <% end %>
 
