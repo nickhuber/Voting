@@ -9,10 +9,9 @@ class ActivePoll < ActiveRecord::Base
   def generate_token    
     o = [('a'..'z')].map{|i| i.to_a}.flatten;  
     token = (0..3).map{ o[rand(o.length)]  }.join;
-    until not ActivePoll.exists?(["token = ?", token.to_s])
+    while ActivePoll.exists?(["token = ?", token.to_s])
       o = [('a'..'z')].map{|i| i.to_a}.flatten;  
       token = (0..3).map{ o[rand(o.length)]  }.join;
-      puts token
     end
     self.token = token
   end

@@ -4,6 +4,7 @@ class PollsController < ApplicationController
   
   # GET /polls
   def index
+    @active_polls = ActivePoll.all
   end
 
   # GET /polls/1
