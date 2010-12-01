@@ -90,8 +90,9 @@ class ActivePollsController < ApplicationController
   
   # GET /active_polls/1/end
   def end
+    report = ActivePoll.find(params[:id]).report
     ActivePoll.find(params[:id]).delete
-    redirect_to :controller => :polls, :action => :index
+    redirect_to report_path(report)
   end
   
 end
