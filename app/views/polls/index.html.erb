@@ -43,7 +43,7 @@
       <tr>
         <td class="tblcol-name"><%= link_to a.poll.title, view_active_poll_path(a.id) %></td>
         <td ><%= time_ago_in_words a.report.created_at %> ago</td>
-        <td class="last"><%= a.token %></td>
+        <td class="token last"><%= a.token %></td>
       </tr>
     <% end %>
     </tbody>

@@ -95,6 +95,11 @@ body.bp table.listing-table {
   .tblcol-link {
     @include column(2);
   }
+  
+  .token {
+    font-family: monospace;
+    font-size: 1.5em;
+  }
 }
 
 #footer {
