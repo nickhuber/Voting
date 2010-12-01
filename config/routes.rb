@@ -21,9 +21,9 @@ Voting::Application.routes.draw do
   match 'active_polls/:id/next', :to => 'active_polls#next', :as => :next_active_poll
   match 'active_polls/:id/prev', :to => 'active_polls#prev', :as => :prev_active_poll
   
-  match ':id/submit/:answer_id', :to => 'active_polls#clicker_submit', :as => :clicker_submit
+  match ':token/submit/:answer_id', :to => 'active_polls#clicker_submit', :as => :clicker_submit
   
-  match ':id', :to => 'active_polls#clicker', :as => :clicker
+  match ':token', :to => 'active_polls#clicker', :as => :clicker
   
   match 'polls/:id/sort', :to => 'polls#sort', :as => :poll_questions_sort
   

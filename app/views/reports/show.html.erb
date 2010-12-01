@@ -16,7 +16,7 @@
 </div>
 
 <div id="temp-table">
-  <span id="report-id"><%= @report.id %></span>
+  <span id="report-id">Report id:<%= @report.id %></span><br/>
   Total Participants:<span class="num_of_participants"><%= @report.participants.count %></span>
   <table>
       <thead> 
@@ -36,48 +36,36 @@
   </table>
 </div>
 
-<% @report.poll.questions.each do |q| %>
+Total Participants:
+<span class="num_of_participants"><%= @report.participants.count %></span>
+<hr/>
+
+<% @report.poll.questions.each_with_index do |q, i| %>
+    <div id="placeholder<%= i %>"></div>
     <div id="question">
-        Total Participants:
-        <span class="num_of_participants"><%= @report.participants.count %></span>
+        
+        
+        <div class="question_name"><%= q.body %></div>
         <table>
             <thead>
                 <tr>
-                    <%q.answers.each do |a| %>
+                    <% q.answers.each do |a| %>
                         <th><%= a.body %></th>
-                    <%end%>
+                    <% end %>
                 </tr>
             </thead>
             <tr>
-                 <%q.answers.each do |a| %>
-                  <td>   1 </td>                            
+                 <% q.answers.each do |a| %>
+                  <td><%= a.picked(@report)%> Participant(s) picked this answer</td>                            
                  <%end%>
             </tr>
         </table>
     </div>
-<%end%>
-
-
+<% end %>
 
 <p>
   <b>Date:</b>
   <%= @report.poll.created_at %>(Format Later)
 </p>
 
-<p>
-  <b>Number of Questions:</b>
-  <%= @report.poll.questions.count %>
-</p>
-
-<p>
-  <b>Number of Participants:</b>
-     <%= @report.participants.count%>
-</p>
-
-<p>
-  <b>Average Score:</b>
-  To be Implemented
-</p>
-
-
-<%= link_to 'Back', reports_path %>
+<%= link_to 'View all reports', reports_path %>

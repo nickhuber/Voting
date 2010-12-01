@@ -9,6 +9,6 @@
 <%= render :partial => "clicker_submit_message" %>
 
 <div id="next-question">
-  <%= link_to "Load new question", clicker_path(@active_poll.id)%>
+  <%= link_to "Load new question", clicker_path(@active_poll.token)%>
   <small>Once the pollster has changed it</small>
 </div>

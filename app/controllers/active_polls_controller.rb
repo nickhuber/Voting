@@ -31,10 +31,10 @@ class ActivePollsController < ApplicationController
     redirect_to :action => :show
   end
       
-  # GET /1
+  # GET /aaaa
   def clicker
     # Active poll being accessed.
-    @active_poll = ActivePoll.find(params[:id])
+    @active_poll = ActivePoll.find_by_token(params[:token])
     
     # Check if user is particpating in this poll. 
     if user_session.active_poll != @active_poll
@@ -61,11 +61,11 @@ class ActivePollsController < ApplicationController
     end
   end
   
-  # GET /1/submit/
+  # GET /aaaa/submit/
   def clicker_submit
     redirect_to :action => :clicker and return if user_session.participant.nil? #check if the user has a session or not
     
-    @active_poll = ActivePoll.find(params[:id])
+    @active_poll = ActivePoll.find_by_token(params[:token])
     if AnsweredQuestion.exists?({:question_id => @active_poll.question.id, :participant_id => user_session.participant})
       if @active_poll.question.id == Answer.find(params[:answer_id]).question.id
         AnsweredQuestion.find_by_question_id_and_participant_id(@active_poll.question.id, user_session.participant).update_attributes(:answer_id => params[:answer_id])
@@ -78,6 +78,7 @@ class ActivePollsController < ApplicationController
         a.question = @active_poll.question
         a.answer = Answer.find(params[:answer_id])
         a.participant_id = user_session.participant
+        a.report_id = @active_poll.report_id
         a.save
         flash[:notice]= "Answer submitted."
       end
