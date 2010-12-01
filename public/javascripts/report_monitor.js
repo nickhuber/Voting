@@ -96,6 +96,13 @@ function fetchData()
     }
     function updateTables(result)
     {
-        console.log(result.correct_questions);
+        
+        $(".question").each(function(idx,el){
+            var index = 0;
+            $(".value", el).each(function(index, el){
+                )text(result.answers_picked[index++]);
+             });
+          
+        });
     }   
 };

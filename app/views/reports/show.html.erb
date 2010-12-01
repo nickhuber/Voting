@@ -43,29 +43,25 @@ Total Participants:
 <hr/>
 
 <% @report.poll.questions.each_with_index do |q, i| %>
-  <div id="placeholder<%= i %>"></div>
-    <div id="question">
+  <div class="question">
 
-      <div class="question_name"><%= q.body %></div>
-      
-      <table>
-        <thead>
-          <th>Answer</th>
-          <th>Number of times answered</th>
-        </thead>
-
-        <% q.answers.each do |a| %>
-          <tr>
-            <td><%= a.body %></td>
-            <td><%= a.picked(@report)%></td>
-          </tr>
-        <% end %>
-
-     </table>
-    </div>
+    <div class="question_name"><%= q.body %></div>
     
-   
+    <table>
+      <thead>
+        <th>Answer</th>
+        <th>Number of times answered</th>
+      </thead>
 
+      <% q.answers.each do |a| %>
+        <tr>
+          <td><%= a.body %></td>
+          <td><span class="value"> <%= a.picked(@report) %> </span></td>
+        </tr>
+      <% end %>
+
+   </table>
+  </div>
 <% end %>
 
 <p>
