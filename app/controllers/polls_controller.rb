@@ -60,7 +60,7 @@ class PollsController < ApplicationController
     
     @active_poll = ActivePoll.new do |a|
       a.poll_id = @poll.id
-      a.question_id = @poll.questions.first.id
+      a.question_id = Pollquestion.find_all_by_poll_id(@poll.id).min { |a, b| a.weight <=> b.weight }.question.id
     end
     
     report = Report.new do |r|
