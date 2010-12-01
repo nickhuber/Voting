@@ -2,9 +2,7 @@ var options = {
         bars:{show:true },
         xaxis: {
 	        max : num_of_questions,
-        /*    ticks: [ 
-                
-            ],		    */   
+      
 		},
         yaxis: {
             min : 0,
@@ -17,8 +15,9 @@ var options = {
 var num_of_questions;
 var num_of_participants;
 $(function () {
-  $("#temp-table").hide();
-    setInterval(fetchData, 2000);
+    $("#temp-table").hide();
+    $("#placeholder").show();
+    setInterval(fetchData, 4000);
     fetchData();
 /*    var num_of_participants = $(".num_of_participants").html();
     var num_of_questions    = $("tbody tr").size();
@@ -38,41 +37,37 @@ $(function () {
 });
 function fetchData()
 {
-  //$.ajaxError(error);num_of_participants
+ 
     
     $.ajax({
-                // usually, we'll just call the same URL, a script
-                // connected to a database, but in this case we only
-                // have static example files so we need to modify the
-                // URL
-                url: $("#report-id").value,
-                method: 'GET',
-                dataType: 'json',
-                success: onDataReceived,
-                error: test 
+        // usually, we'll just call the same URL, a script
+        // connected to a database, but in this case we only
+        // have static example files so we need to modify the
+        // URL
+        url: $("#report-id").value,
+        method: 'GET',
+        dataType: 'json',
+        success: onDataReceived,
+        
      });
-    function test(XMLHttpRequest, textStatus, errorThrown) 
-    {
-        var x = errorThrown;
-      //  alert(XMLHttpRequest);
-    }
+   
     function onDataReceived(data, textStatus, XMLHttpRequest)
     {
-                // we get all the data in one go, if we only got partial
-                // data, we could merge it with what we already got
-                var num_of_participants = data[0];   
-                var num_of_questions    = data[1].length
-                var result = new Array();  
-                var count = 0;        
-                options.yaxis.max = num_of_participants;
-                options.xaxis.max = num_of_questions;
-                //result = data[1];
-                while(count < data[1].length)
-                {
-                    result[count] = {data: [[count,data[1][count]]]};
-                    count++;
-                }
-                console.log(result);
-                $.plot($("#placeholder"), result, options);
+        // we get all the data in one go, if we only got partial
+        // data, we could merge it with what we already got
+        var num_of_participants = data[0];   
+        var num_of_questions    = data[1].length
+        var result = new Array();  
+        var count = 0;        
+        options.yaxis.max = num_of_participants;
+        options.xaxis.max = num_of_questions;
+        //result = data[1];
+        while(count < data[1].length)
+        {
+            result[count] = {data: [[count,data[1][count]]]};
+            count++;
+        }
+        console.log(result);
+        $.plot($("#placeholder"), result, options);
     }
 };

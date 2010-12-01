@@ -23,6 +23,7 @@ class ReportsController < ApplicationController
     end
        data = [ 
         @report.participants.count,
+        @report.poll.questions.count,
         correct_questions
        ];
        respond_with data.to_json
