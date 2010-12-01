@@ -11,17 +11,6 @@ class ReportsController < ApplicationController
     end
   end
 
-# TO BE IMPLEMENTED
-  #def question
-  #  answers = Array.new
-  #  @report.poll.questions.each_with_index do |q, i|
-  #      answers[i] = Array.new
-  #      q.answers.each do |a|
-  #         answers[i] << a.body
-  #      end
-  #  end 
-  #end
-
   # GET /reports/1
   # GET /reports/1.json
   def show
@@ -33,13 +22,15 @@ class ReportsController < ApplicationController
     if(@report.participants.count == 0)
         correct_questions << -1
     else
-        @report.poll.questions.each do |q|
-            correct_questions << AnsweredQuestion.num_correct(q)
-            question_labels << q.body
+        sorted = @report.poll.pollquestions.sort { |a, b| a.weight <=> b.weight }
+        sorted.each do |q|
+            if report.
+            correct_questions << AnsweredQuestion.num_correct(q.question, @report)
+            question_labels << q.question.body
         end
     end
-    @report.poll.questions.each do |q|
-        q.answers.each do |a|
+    @report.poll.pollquestions.sort { | a, b | a.weight <=> b.weight } .each do |q|
+        q.question.answers.each do |a|
             answers_picked << a.picked(@report)
         end 
     end
