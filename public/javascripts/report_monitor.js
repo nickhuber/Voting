@@ -39,7 +39,7 @@ $(document).ready(function(){
     $("#temp-table").hide();
     $("#placeholder").show();
     fetchData();
-    //setInterval(fetchData, 4000);
+    setInterval(fetchData, 4000);
 
     var num_of_participants = $(".num_of_participants").html();
     var num_of_questions    = $("tbody tr").size();
@@ -96,13 +96,13 @@ function fetchData()
     }
     function updateTables(result)
     {
-        
+        var index = 0;
         $(".question").each(function(idx,el){
-            var index = 0;
-            $(".value", el).each(function(index, el){
-                )text(result.answers_picked[index++]);
+           
+            $(".value",el).each(function(ex, el){
+                $(el).text(result.answers_picked[index++]);
              });
-          
+            
         });
     }   
 };
