@@ -30,19 +30,22 @@
   </tbody>
 </table>
 
-<% unless @active_polls.nil? %>
-  <table>
+<% unless @active_polls.empty? %>
+  <h2>Active Polls</h2>
+  <table class="listing-table active-polls">
+    <tbody>
     <tr>
-      <th class="tblcol-name">Start Date</th>
-      <th class="tblcol-name">Active Poll</th>
-      <th class="tblcol-name">Token</th>
+      <th class="tblcol-name">Title</th>
+      <th>Started</th>
+      <th class="last">Token</th>
     </tr>
     <% @active_polls.each do |a| %>
       <tr>
-        <td class="tbcol-name"><%= time_ago_in_words a.report.created_at %> ago</td>
-        <td class="tblcol-link"><%= link_to a.poll.title, view_active_poll_path(a.id) %></td>
-        <td class="tblcol-name"><%= a.token %></td>
+        <td class="tblcol-name"><%= link_to a.poll.title, view_active_poll_path(a.id) %></td>
+        <td ><%= time_ago_in_words a.report.created_at %> ago</td>
+        <td class="token last"><%= a.token %></td>
       </tr>
     <% end %>
+    </tbody>
   </table>
 <% end %>

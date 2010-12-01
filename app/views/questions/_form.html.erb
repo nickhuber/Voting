@@ -20,7 +20,9 @@
   </p>
   
   <div id="answers">
-    <%= render :partial => 'answer', :collection => @question.answers %>
+    <% (0..(@num_answers - 1)).each do |i| %>
+      <%= render :partial => 'answer', :object => @question.answers[i], :locals => {:index => i} %>
+    <% end %>
   </div>
   
   <div class="actions">

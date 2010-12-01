@@ -30,7 +30,7 @@
     <ol>
       <% @question.answers.each do |a| %>
         <li>
-          <%= link_to a.body, answer_path(a) %>
+          <%= a.body %>
           <% if a.correct %> 
             <span class="correct"> (correct answer) 
           <% end %>

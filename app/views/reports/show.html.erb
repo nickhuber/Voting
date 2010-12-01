@@ -47,6 +47,7 @@ Total Participants:
     <div id="question">
 
 
+
     <div class="question_name"><%= q.body %></div>
     <table>
       <thead>
@@ -63,11 +64,29 @@ Total Participants:
 
     </table>
   </div>
+    
+    <div class="question_name"><%= q.body %></div>
+    <table>
+        <thead>
+            <tr>
+                <% q.answers.each do |a| %>
+                    <th><%= a.body %></th>
+                <% end %>
+            </tr>
+        </thead>
+        <tr>
+            <% q.answers.each do |a| %>
+              <td><%= a.picked(@report)%> Participant(s) picked this answer
+              </td>                            
+            <% end %>
+        </tr>
+    </table>
+  </div>
+
 <% end %>
 
 <p>
-  <b>Date:</b>
-  <%= @report.poll.created_at %>(Format Later)
+  Polled <%= time_ago_in_words(@report.poll.created_at) %> ago.
 </p>
 
 <%= link_to 'View all reports', reports_path %>
