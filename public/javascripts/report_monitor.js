@@ -2,11 +2,13 @@ var options = {
         bars:{show:true },
         xaxis: {
 	        max : num_of_questions,
+            tickSize: 1
       
 		},
         yaxis: {
             min : 0,
             max : num_of_participants,
+            tickSize: 1
         },
 		legend: {
 		    show: false
@@ -14,6 +16,7 @@ var options = {
     }
 var num_of_questions;
 var num_of_participants;
+
 $(function () {
     $("#temp-table").hide();
     $("#placeholder").show();
@@ -36,9 +39,7 @@ $(function () {
       
 });
 function fetchData()
-{
- 
-    
+{   
     $.ajax({
         // usually, we'll just call the same URL, a script
         // connected to a database, but in this case we only
@@ -62,12 +63,17 @@ function fetchData()
         options.yaxis.max = num_of_participants;
         options.xaxis.max = num_of_questions;
         //result = data[0];
+        if(data[2][0] == -1)
+        {
+            $("#placeholder").hide();
+            $("#temp-table").show();
+        }
         while(count < data[2].length)
         {
             result[count] = {data: [[count,data[2][count]]]};
             count++;
         }
-        console.log(result);
+        console.log(data[2].length);
         $.plot($("#placeholder"), result, options);
     }
 };

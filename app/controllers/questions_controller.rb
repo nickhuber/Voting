@@ -62,6 +62,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:q_id])
     @poll.questions << @question
     respond_with @poll, @question
+
   end
   
   # PUT polls/1/questions/1/remove
