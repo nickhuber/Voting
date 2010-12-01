@@ -10,12 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101119005104) do
+ActiveRecord::Schema.define(:version => 20101130234312) do
 
   create_table "active_polls", :force => true do |t|
     t.integer "poll_id"
     t.integer "question_id"
     t.integer "report_id"
+    t.string  "token"
   end
 
   create_table "answered_questions", :force => true do |t|
