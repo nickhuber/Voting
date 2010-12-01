@@ -10,16 +10,16 @@
   <%= notice %>
 <% end %>
 
-<h2>ID for this poll: <%= @active_poll.token %></h2>
+<h3>ID for this poll: <strong><blink><%= @active_poll.token %></blink></strong></h3>
 
 <div class="data">
   <div id="active_poll_id"><%= @active_poll.id %></div>
   <div id="active_question_id"><%= @active_poll.question.id %></div>
 </div>
 
-<p>
-	<h2><%= @active_poll.question.body %></h2>
-</p>
+
+<h2><%= @active_poll.question.body %></h2>
+
 <p>
   <h3>Choices</h3>
   <ol>
