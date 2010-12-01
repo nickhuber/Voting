@@ -30,7 +30,7 @@
           <% @report.poll.pollquestions.sort { | a, b | a.weight <=> b.weight }.each do |q| %>  
               <tr>    
                   <td><%= q.question.body %></td>
-                  <td class="correct_answer"><%= AnsweredQuestion.num_correct(q.question).to_s %></td>
+                  <td class="correct_answer"><%= AnsweredQuestion.num_correct(q.question, @report).to_s %></td>
               </tr>   
           <% end %>
       </tbody>
